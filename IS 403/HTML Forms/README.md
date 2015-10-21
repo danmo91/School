@@ -80,3 +80,22 @@ public String Sign_in(FormCollection form)
 }
 ```
 
+![add code to controller](images/controller.png)
+
+Submitting the form passes the form data to the Sign_in action.  We retreived the email address from the form and returned a string to give feedback to the user.
+
+### Make it pretty: Add html attributes to form
+
+```
+@using (Html.BeginForm("Sign_in", "Home", FormMethod.Post, new { @class = "form-signin" }))
+{
+    <h2 class="form-signin-heading">Please sign in</h2>
+    <label for="inputEmail" class="sr-only">Email address</label>
+    @Html.TextBox("Email address", "", new { type = "email", id = "inputEmail", @class = "form-control", placeholder = "Email address", required = true, autofocus = true })
+    <label for="inputPassword" class="sr-only">Password</label>
+    @Html.Password("Password", "", new { type = "password", id = "inputPassword", @class = "form-control", placeholder = "Password", required = true})
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+}
+```
+
+

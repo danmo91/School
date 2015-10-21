@@ -29,7 +29,10 @@ We are building a view that displays a sign in form to the user and submits the 
 
 ## Getting Started
 
-1. Download this starter project
+### Download Starter Code
 
+### Build form with HTML Helper
+
+![build form in index.cshtml](images/build-form.png)
 
 

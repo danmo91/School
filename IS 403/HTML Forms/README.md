@@ -88,6 +88,14 @@ Submitting the form passes the form data to the Sign_in action.  We retreived th
 
 ### Make it pretty: Add html attributes to form
 
+You can add html attributes to the form by passing an object to the Html helper's constructor
+
+```
+Html.BeginForm("Action Name", "Controller Name", new { @class = "form-signin" })
+```
+
+*NOTE: to pass class names you must use @class, because class is a reserved word*
+
 ```
 @using (Html.BeginForm("Sign_in", "Home", FormMethod.Post, new { @class = "form-signin" }))
 {

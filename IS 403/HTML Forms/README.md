@@ -94,7 +94,8 @@ You can add html attributes to the form by passing an object to the Html helper'
 Html.BeginForm("Action Name", "Controller Name", new { @class = "form-signin" })
 ```
 
-*NOTE: to pass class names you must use @class, because class is a reserved word*
+*NOTE:* to pass class names you must use @class, because class is a reserved word
+
 
 ```
 @using (Html.BeginForm("Sign_in", "Home", FormMethod.Post, new { @class = "form-signin" }))
@@ -107,5 +108,6 @@ Html.BeginForm("Action Name", "Controller Name", new { @class = "form-signin" })
     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 }
 ```
+### Done!
 
-
+![picture of complete product](images/finished.png)

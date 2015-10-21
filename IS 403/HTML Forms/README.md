@@ -39,7 +39,7 @@ We are building a view that displays a sign in form to the user and submits the 
 
 ### Download Starter Code
 
-Running the project displays an empty view for us to build our form in
+Run the project and make sure it displays an empty view for us to build our form in
 
 ![inital load screen when running the project](images/initial-run.png)
 
@@ -60,8 +60,7 @@ Add this code to your index.cshtml file
 
 ![build form in index.cshtml](images/build-form.png)
 
-
-run your project and your view should now show an ugly form for the user to input an email address and password
+Your view should now show an ugly form for the user to input an email address and password
 
 ![build form in index.cshtml](images/ugly-form.png)
 

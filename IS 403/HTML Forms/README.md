@@ -4,7 +4,9 @@ This tutorial about HTML forms will take less than 30 minutes
 
 ## Introduction
 
-**This is what a form looks like in HTML.**  
+**This is what a form looks like in HTML**  
+
+
 
 ```html
 <form action="/Home/Sign_in" method="POST">
@@ -14,15 +16,22 @@ This tutorial about HTML forms will take less than 30 minutes
 </form>
 ```
 
-Attribute | Description
---------- | -----------
-Action    | Tells the browser where to send the information the user enters into the form
-Method    | GET or POST
-Input     | Create form compontents (text box, button)
-GET       | Requests data from a specified resource
-POST      | Submits data to be processed to a specified resource
+
+
+Form Component | Description
+-------------- | -----------
+Action         | Tells the browser where to send the information the user enters into the form
+Method         | GET or POST
+Input          | Create form compontents (text box, button)
+GET            | Requests data from a specified resource
+POST           | Submits data to be processed to a specified resource
+
+
 
 We build forms in .NET using the Html form helper class
+
+
+
 ```
 @using (Html.BeginForm("Sign_in", "Home", FormMethod.Post))
 {

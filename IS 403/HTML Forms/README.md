@@ -2,7 +2,17 @@
 
 This tutorial about HTML forms will take less than 30 minutes
 
-**This is what a form looks like in HTML.**  The form's action attribute tells the browser where to send the information the user enters into the form.  The method attribute tells the browser whether to GET data or POST data to/from the server.  The form contains input tags where the user will enter information and submit the form.
+**This is what a form looks like in HTML.**  
+
+Attribute | Description
+--------- | -----------
+Action    | Tells the browser where to send the information the user enters into the form
+Method    | GET or POST
+GET       | Requests data from a specified resource
+POST      | Submits data to be processed to a specified resource
+
+
+The method attribute tells the browser whether to GET data or POST data to/from the server.  The form contains input tags where the user will enter information and submit the form.
 
 ```html
 <form action="/Home/Sign_in" method="POST">

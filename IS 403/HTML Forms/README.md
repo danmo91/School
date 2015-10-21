@@ -43,9 +43,9 @@ Running the project displays an empty view for us to build our form in
 
 ![inital load screen when running the project](images/initial-run.png)
 
-### Build form with HTML Helper
+### View: Build form with HTML Helper
 
-add this code to your index.cshtml file
+Add this code to your index.cshtml file
 
 ```
 @using (Html.BeginForm("Sign_in", "Home", FormMethod.Post))
@@ -67,7 +67,16 @@ run your project and your view should now show an ugly form for the user to inpu
 
 Before this form will work we need to create an action method in our Home Controller to receive this request
 
-### Create Sign_in Action method in controller
+### Controller: Create Sign_in Action method
 
+Add a method to your Home Controller called Sign_in
 
+``` csharp
+[HttpPost]
+public String Sign_in(FormCollection form)
+{
+    String email = form["Email address"].ToString();
+    return "Signing in : " + email; 
+}
+```
 

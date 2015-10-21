@@ -69,7 +69,7 @@ Before this form will work we need to create an action method in our Home Contro
 
 ### Controller: Create Sign_in Action method
 
-Add a method to your Home Controller called Sign_in
+**Add a method to your Home Controller called Sign_in.**  We use the `[HttpPost]` annotation to specify that this method is receiving data
 
 ``` csharp
 [HttpPost]

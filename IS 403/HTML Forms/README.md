@@ -19,7 +19,7 @@ The request object stores the values the user entered for email and password
 
 ## Getting Started
 
-![picture of complete product](/images/finished.png)
+![picture of complete product](images/finished.png)
 
 
 

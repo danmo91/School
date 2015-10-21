@@ -19,7 +19,7 @@ The request object stores the values the user entered for email and password
 
 ## Getting Started
 
-This is what we are building
+We are building a view that displays a sign in form to the user and submits the form data to the Sign_in action in the Home Controller
 
 ![picture of complete product](images/finished.png)
 

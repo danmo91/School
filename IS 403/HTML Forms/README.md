@@ -6,6 +6,7 @@ This tutorial about HTML forms will take 30 minutes or less
 - The action attribute tells where to send the information (/Controller/Action)
 - The method attribute tells where to HTTP POST or HTTP GET when sending the information (Default Method is GET)
 
+This is what an HTML form looks like when rendered on the page
 ```html
 <form action="/Home/Sign_in" method="POST">
 	<input name="email" type="email" />
@@ -13,8 +14,15 @@ This tutorial about HTML forms will take 30 minutes or less
 	<input type="submit" value="Sign in" />
 </form>
 ```
-Clicking submit on this form sends a request to the Home Controller, Sign_in method
-The request object stores the values the user entered for email and password
+This is how we build forms using the Html form helper class
+```
+@using (Html.BeginForm("Sign_in", "Home", FormMethod.Post))
+{
+    @Html.TextBox("Email address")
+    @Html.Password("Password")
+    <button type="submit">Sign in</button>
+}
+```
 
 
 ## Getting Started

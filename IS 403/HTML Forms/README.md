@@ -23,13 +23,11 @@ This is how we build forms using the Html form helper class
     <button type="submit">Sign in</button>
 }
 ```
-
-
-## Getting Started
-
 We are building a view that displays a sign in form to the user and submits the form data to the Sign_in action in the Home Controller
 
 ![picture of complete product](images/finished.png)
+
+## Getting Started
 
 1. Download this starter project
 

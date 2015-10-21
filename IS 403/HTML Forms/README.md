@@ -4,7 +4,9 @@ This tutorial about HTML forms will take less than 30 minutes
 
 ## Introduction
 
-**This is what a form looks like in HTML.**  
+**This is what a form looks like in HTML**  
+
+
 
 ```html
 <form action="/Home/Sign_in" method="POST">
@@ -14,15 +16,22 @@ This tutorial about HTML forms will take less than 30 minutes
 </form>
 ```
 
-Attribute | Description
---------- | -----------
-Action    | Tells the browser where to send the information the user enters into the form
-Method    | GET or POST
-Input     | Create form compontents (text box, button)
-GET       | Requests data from a specified resource
-POST      | Submits data to be processed to a specified resource
+
+
+Form Component | Description
+-------------- | -----------
+Action         | Tells the browser where to send the information the user enters into the form
+Method         | GET or POST
+Input          | Create form compontents (text box, button)
+GET            | Requests data from a specified resource
+POST           | Submits data to be processed to a specified resource
+
+
 
 We build forms in .NET using the Html form helper class
+
+
+
 ```
 @using (Html.BeginForm("Sign_in", "Home", FormMethod.Post))
 {
@@ -39,7 +48,7 @@ We are building a view that displays a sign in form to the user and submits the 
 
 ### Download Starter Code
 
-Running the project displays an empty view for us to build our form in
+Run the project and make sure it displays an empty view for us to build our form in
 
 ![inital load screen when running the project](images/initial-run.png)
 
@@ -60,8 +69,7 @@ Add this code to your index.cshtml file
 
 ![build form in index.cshtml](images/build-form.png)
 
-
-run your project and your view should now show an ugly form for the user to input an email address and password
+Your view should now show an ugly form for the user to input an email address and password
 
 ![build form in index.cshtml](images/ugly-form.png)
 

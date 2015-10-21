@@ -1,12 +1,9 @@
 # HTML Forms
 
-This tutorial about HTML forms will take 30 minutes or less
+This tutorial about HTML forms will take less than 30 minutes
 
-- Forms are containers that allows a user to enter information and SUBMIT it to a server.
-- The action attribute tells where to send the information (/Controller/Action)
-- The method attribute tells where to HTTP POST or HTTP GET when sending the information (Default Method is GET)
+**This is what a form looks like in HTML.**  The form's action attribute tells the browser where to send the information the user enters into the form.  The method attribute tells the browser whether to GET data or POST data to/from the server.  The form contains input tags where the user will enter information and submit the form.
 
-This is what an HTML form looks like when rendered on the page
 ```html
 <form action="/Home/Sign_in" method="POST">
 	<input name="email" type="email" />
@@ -31,8 +28,33 @@ We are building a view that displays a sign in form to the user and submits the 
 
 ### Download Starter Code
 
+Running the project displays an empty view for us to build our form in
+
+![inital load screen when running the project](images/initial-run.png)
+
 ### Build form with HTML Helper
 
 ![build form in index.cshtml](images/build-form.png)
+
+add this code to your index.cshtml file
+
+```
+@using (Html.BeginForm("Sign_in", "Home", FormMethod.Post))
+{
+    <label for="inputEmail">Email address</label>
+    @Html.TextBox("Email address")
+    <label for="inputPassword">Password</label>
+    @Html.Password("Password")
+    <button type="submit">Sign in</button>
+}
+```
+run your project and your view should now show an ugly form for the user to input an email address and password
+
+![build form in index.cshtml](images/ugly-form.png)
+
+Before this form will work we need to create an action method in our Home Controller to receive this request
+
+### Create Sign_in Action method in controller
+
 
 

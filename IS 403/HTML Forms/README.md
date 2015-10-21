@@ -84,6 +84,8 @@ public String Sign_in(FormCollection form)
 
 Submitting the form passes the form data to the Sign_in action.  We retreived the email address from the form and returned a string to give feedback to the user.
 
+![submitting form](images/submitting-form.png)
+
 ### Make it pretty: Add html attributes to form
 
 ```

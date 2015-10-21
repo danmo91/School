@@ -22,7 +22,7 @@ Input     | Create form compontents (text box, button)
 GET       | Requests data from a specified resource
 POST      | Submits data to be processed to a specified resource
 
-We build form in .NET using the Html form helper class
+We build forms in .NET using the Html form helper class
 ```
 @using (Html.BeginForm("Sign_in", "Home", FormMethod.Post))
 {
@@ -45,8 +45,6 @@ Running the project displays an empty view for us to build our form in
 
 ### Build form with HTML Helper
 
-![build form in index.cshtml](images/build-form.png)
-
 add this code to your index.cshtml file
 
 ```
@@ -59,6 +57,10 @@ add this code to your index.cshtml file
     <button type="submit">Sign in</button>
 }
 ```
+
+![build form in index.cshtml](images/build-form.png)
+
+
 run your project and your view should now show an ugly form for the user to input an email address and password
 
 ![build form in index.cshtml](images/ugly-form.png)

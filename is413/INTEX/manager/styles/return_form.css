@@ -1,0 +1,29 @@
+.field {
+
+    margin-bottom:15px;
+}
+
+.right {
+
+    margin-left:30px;
+
+}
+
+.checkboxy {
+
+    display:inline-block;
+    width: 200px;
+    margin-bottom:15px;
+
+
+}
+
+.right {
+
+    margin-left:70px;
+
+}
+.modal-content {
+    data-backdrop:"false";
+    z-index:1020;
+}

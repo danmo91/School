@@ -1,0 +1,41 @@
+<%inherit file="base.htm" />
+
+<%block name="center">
+
+    <div class="jumbotron">
+        <div class="container">
+            <h1>Dashboard</h1>
+        </div>
+    </div>
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-4 third">
+                <h1 class="third">Overdue Rentals</h1>
+                <div class="canvas-holder third">
+                    <canvas class="chart" id="overdue-chart"/>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <h1 class="third">Inventory</h1>
+                <div class="canvas-holder third">
+                    <canvas class="chart" id="inventory-chart"/>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <h1 class="third">Sales</h1>
+                <div class="canvas-holder third">
+                    <canvas class="chart" id="sales-chart"/>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+
+</%block>

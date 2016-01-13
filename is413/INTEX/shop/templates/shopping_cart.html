@@ -1,0 +1,88 @@
+<%inherit file="base_ajax.htm" />
+
+<%block name="content">
+
+  <div class="items">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+        <%
+          total = 0
+        %>
+
+        %for key,value in items.items():
+        <%
+          price = value[0].current_price
+          qty = value[1]
+
+          sub_total =  price * qty
+          total += sub_total
+        %>
+          <tr>
+            <td>${ value[0].name }</td>
+            <td>${ value[1] }</td>
+            <td>$${ value[0].current_price }</td>
+            <td>$${ sub_total }</td>
+            <td><a data-id='${ value[0].id}' data-product='True' class="btn btn-primary delete_from_cart">Remove</a></td>
+          </tr>
+        %endfor
+
+        </tbody>
+
+      </table>
+
+  </div>
+
+  <div class="rentals">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+        %for rental in rentals:
+        <% total += rental.rental_price %>
+          <tr>
+            <td>${ rental.name }</td>
+            <td>-</td>
+            <td>$${ rental.rental_price }</td>
+            <td>-</td>
+            <td><a data-id='${ rental.id}' data-product='False' class="btn btn-primary delete_from_cart">Remove</a></td>
+          </tr>
+        %endfor
+
+        </tbody>
+
+        <tfoot>
+          <tr>
+            <td><strong>Total</strong></td>
+            <td> </td>
+            <td> </td>
+            <td id="total_row">$${ total }</td>
+          </tr>
+        </tfoot>
+
+      </table>
+
+  </div>
+
+
+
+</%block>

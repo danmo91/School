@@ -1,0 +1,113 @@
+<%inherit file="base.htm" />
+
+<%block name="header">
+
+</%block>
+
+<%block name="center">
+
+<div class="container">
+	<div class="row form-group">
+        <div class="col-xs-12">
+            <ul class="nav nav-pills nav-justified thumbnail setup-panel">
+                <li class="disabled"><a href="#step-1"
+                    <h4 class="list-group-item-heading">Step 1</h4>
+                    <p class="list-group-item-text">Confirm Order</p>
+                </a></li>
+                <li class="active"><a href="#step-2">
+                    <h4 class="list-group-item-heading">Step 2</h4>
+                    <p class="list-group-item-text">Enter Payment</p>
+                </a></li>
+                <li class="disabled"><a href="#step-3">
+                    <h4 class="list-group-item-heading">Step 3</h4>
+                    <p class="list-group-item-text">Thank You</p>
+                </a></li>
+            </ul>
+        </div>
+	</div>
+</div>
+
+<div class="container">
+
+	<div class="row ">
+
+		<form id="checkoutform" method="POST">
+
+				<div class="row">
+
+					<div class="col-md-6 col-md-offset-3 well">
+
+						<div class="row">
+
+							<div class="col-md-4 col-md-offset-2">
+
+								<h4>Shipping</h4>
+
+							</div>
+
+							<div class="col-md-4 col-md-offset-2">
+
+								<h4>Credit Card</h4>
+
+							</div>
+
+						</div>
+
+						<div class="row">
+
+							<div class="col-md-6 ">
+
+								street
+								${form['street']}
+								${form['street'].errors}
+
+								city
+								${form['city']}
+								${form['city'].errors}
+
+								state
+								${form['state']}
+								${form['state'].errors}
+
+								zip code
+								${form['zip_code']}
+								${form['zip_code'].errors}
+
+							</div>
+
+							<div class="col-md-6 ">
+
+								credit card number
+								${form['creditcard']}
+								${form['creditcard'].errors}
+
+								expiration month
+								${form['exp_month']}
+								${form['exp_month'].errors}
+
+								expiration year
+								${form['exp_year']}
+								${form['exp_year'].errors}
+
+								cvc
+								${form['cvc']}
+								${form['cvc'].errors}
+
+							</div>
+						</div>
+						<button class="btn btn-lg btn-primary pull-right" type="submit">Continue</button>
+					</div>
+				</div>
+		</form>
+	</div>
+</div>
+
+
+</%block>
+
+<%block name="foot_links">
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
+
+
+</%block>

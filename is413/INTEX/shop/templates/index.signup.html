@@ -1,0 +1,48 @@
+<%inherit file="base_ajax.htm" />
+
+<%block name="content">
+
+  <!-- <form id="signup_form" method="POST" action="/shop/index.signup/">
+
+  <table>
+    ${ form }
+  </table>
+
+  <input type="submit" class="btn btn-success"/>
+</form> -->
+
+
+
+
+
+<form class=form-signin id="signup_form" method="POST" action="/shop/index.signup/">
+
+
+    %for error in form.non_field_errors():
+
+      ${ error }
+
+    %endfor
+
+    %for field in form:
+
+    <label class="sr-only"> ${ field.name }</label>
+
+
+
+      ${ field }
+
+      %if field.errors != '':
+
+      ${ field.errors }
+
+      %endif
+
+    %endfor
+
+  <button class="btn btn-lg btn-primary btn-block" type="submit">Signup</button>
+
+</form>
+
+
+</%block>

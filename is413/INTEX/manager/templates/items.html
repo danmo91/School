@@ -1,0 +1,50 @@
+<%inherit file="base.htm" />
+
+<%block name="center">
+
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Items</h1>
+      </div>
+    </div>
+
+
+    <a href="/manager/items.create/" id="btn_create" class="btn btn-success pull-right create">Create new item</a>
+
+	<table class="table table-striped table-bordered table-hover">
+
+      <thead>
+
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Value</th>
+          <th>Rental Price</th>
+          <th>Actions</th>
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        % for item in items:
+  				<tr>
+  					<td>${ item.name }</td>
+  					<td>${ item.description }</td>
+  					<td>$${ item.value }</td>
+  					<td>$${ item.rental_price }</td>
+  					<td>
+  						<a href="/manager/items.edit/${item.id}"/> Edit </a>
+  						|
+  						<a href="/manager/items.delete/${item.id}"> Delete </a>
+
+
+  					</td>
+  				</tr>
+  			% endfor
+
+      </tbody>
+
+	</table>
+
+</%block>

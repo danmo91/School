@@ -1,0 +1,39 @@
+body{
+  margin-top:60px;
+
+}
+
+
+.item_image{
+
+  max-height: 200px;
+
+}
+.modal-backdrop {
+  z-index:0;
+}
+
+.item_containter {
+
+  display: inline-block;
+  border: 1px solid #CCC;
+  border-radius: 10px;
+  padding: 5px;
+  margin: 10px;
+
+}
+
+#total_row  {
+
+  font-weight: bold;
+
+}
+.thumbnail {
+
+  height: 400px;
+
+}
+.modal-content {
+    data-backdrop:"false" !important;
+    z-index:1500 !important;
+}

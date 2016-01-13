@@ -1,0 +1,12 @@
+.jumbotron h1 {
+
+  text-align: center;
+
+}
+.modal-content {
+    data-backdrop:"false" !important;
+    z-index:1500 !important;
+}
+.modal-backdrop {
+  z-index:0;
+}

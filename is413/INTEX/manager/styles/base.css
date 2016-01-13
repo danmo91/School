@@ -1,0 +1,25 @@
+
+.table {
+
+  width: 80%;
+  margin-left:10%;
+  margin-right:10%;
+  margin-top: 6%;
+}
+
+.jumbotron h1 {
+
+  text-align: center;
+
+}
+
+.create, .save{
+
+  margin-right: 10%;
+
+}
+
+.modal-content {
+    data-backdrop:"false";
+    z-index:1020;
+}

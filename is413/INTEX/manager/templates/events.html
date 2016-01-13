@@ -1,0 +1,46 @@
+<%inherit file="base.htm" />
+
+<%block name="center">
+
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Events</h1>
+      </div>
+    </div>
+
+    <a href="/manager/events.create/" id="btn_create" class="btn btn-success pull-right create">Create new event</a>
+
+	<table class="table table-striped table-bordered table-hover">
+
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Venue</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+        % for event in events:
+          <tr>
+            <td>${ event.name }</td>
+            <td>${ event.description }</td>
+            <td>${ event.start }</td>
+            <td>${ event.end }</td>
+            <td>${ event.venue }</td>
+            <td>
+              <a href="/manager/events.edit/${event.id}"/> Edit </a>
+              |
+              <a href="/manager/events.delete/${event.id}"> Delete </a>
+            </td>
+          </tr>
+        % endfor
+      </tbody>
+
+    </table>
+
+</%block>

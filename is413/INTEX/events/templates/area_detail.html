@@ -1,0 +1,60 @@
+<%inherit file="base.htm" />
+
+<!-- view area name, description, and area_item's for sale -->
+
+<%block name="center">
+    <div class="container eventstyle">
+
+            <!-- Jumbotron Header -->
+            <header class="jumbotron hero-spacer">
+                <h1>${ area.name }</h1>
+            </header>
+
+            <div class= "row breaker">
+              <p> ${ area.description }</p>
+            </div>
+            % if products:
+              <!-- Title -->
+              <div class="row">
+                  <div class="col-lg-12">
+                      <h3>Available Products</h3>
+                  </div>
+              </div>
+            %endif
+            <!-- /.row -->
+
+            <!-- Page Features -->
+            <div class="row text-center items">
+
+              %for product in products:
+
+                <div class="col-md-3 col-sm-6 hero-feature">
+                    <div class="thumbnail lengthy">
+                        <img class="item_image" src="${ STATIC_URL }events/media/areaitem_images/${ product.id}.jpg" alt="">
+                        <div class="caption">
+                            <h3>${ product.name }</h3>
+                            <p>${ product.price }</p>
+                        </div>
+                    </div>
+                </div>
+
+              %endfor
+
+
+            </div>
+            <!-- /.row -->
+
+            <hr>
+
+            <!-- Footer -->
+            <footer>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p>Copyright Your Website 2014</p>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+
+</%block>

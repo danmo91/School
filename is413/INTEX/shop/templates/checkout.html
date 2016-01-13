@@ -1,0 +1,122 @@
+<%inherit file="base.htm" />
+
+
+<%block name="header">
+
+</%block>
+
+<%block name="center">
+
+<div class="jumbotron">
+  <div class="container">
+    <h1>Checkout</h1>
+  </div>
+</div>
+
+
+  <div class="items">
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+
+
+    <% total = 0 %>
+
+    <tbody>
+
+    %for key,value in items.items():
+
+    <%
+      price = int(value[0].value)
+      qty = value[1]
+
+      sub_total =  price * qty
+      total += sub_total
+    %>
+
+
+
+        <tr>
+          <td>${ value[0].name }</td>
+          <td>
+
+            ${ value[1] }
+
+          </td>
+          <td>$${ value[0].value }</td>
+          <td>$${ sub_total }</td>
+        </tr>
+
+
+
+    %endfor
+    </tbody>
+
+
+      <tfoot>
+        <tr>
+          <td> </td>
+          <td> </td>
+          <td> </td>
+          <td id="total_row">$${ total }</td>
+        </tr>
+      </tfoot>
+
+
+    </table>
+
+  </div>
+
+
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Shipping and Credit Card</h3>
+    </div>
+    <div class="panel-body">
+
+      <!-- <form id="checkoutform" method="POST" action="/shop/receipt/">
+
+        <table>
+
+          ${form}
+
+        </table>
+
+        <input value="Checkout" type="submit" class="btn btn-success"/>
+      </form> -->
+
+
+      <form class=form-signin id="checkoutform" method="POST" action="/shop/receipt/">
+
+          %for field in form:
+
+          <label class="sr-only"> ${ field.name }</label>
+
+          <% print('Field:',field) %>
+
+            ${ field }
+
+          %endfor
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Checkout</button>
+
+      </form>
+
+    </div>
+    <div class="panel-footer">
+
+    </div>
+  </div>
+
+
+
+
+</%block>

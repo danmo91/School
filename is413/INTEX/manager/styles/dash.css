@@ -1,0 +1,25 @@
+body {
+
+    padding: 0;
+    margin: 0;
+}
+
+.canvas-holder {
+
+    width:50%;
+
+}
+
+.chart {
+
+    width:400px;
+    height:400px;
+
+}
+
+.third {
+
+    margin:auto;
+    text-align:center;
+
+}

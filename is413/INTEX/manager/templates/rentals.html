@@ -1,0 +1,57 @@
+<%inherit file="base.htm" />
+
+<%block name="center">
+
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Rentals</h1>
+      </div>
+    </div>
+
+    <a href="/manager/rentals.create/" id="btn_create" class="btn btn-success pull-right create">Create new rental</a>
+
+	<table class="table table-striped table-bordered table-hover">
+
+      <thead>
+
+        <tr>
+    		<th>Item</th>
+    		<th>Rental Date</th>
+    		<th>Due Date</th>
+    		<th>Return Date</th>
+    		<th>Customer</th>
+    		<th>Actions</th>
+  		</tr>
+
+      </thead>
+
+      <tbody>
+
+        % for rental in rentals:
+		<tr>
+			<td>${ rental.description }</td>
+			<td>${ rental.rental_date }</td>
+			<td>${ rental.due_date }</td>
+			<td>${ rental.return_date }</td>
+
+            %if rental.user is not None:
+            <td>${ rental.user.first_name + ' ' + rental.user.last_name }</td>
+
+            %else:
+            <td>None</td>
+
+            %endif
+
+			<td>
+				<a href="/manager/rentals.edit/${rental.id}"/> Edit </a>
+				|
+				<a href="/manager/rentals.delete/${rental.id}"> Delete </a>
+			</td>
+		</tr>
+  		% endfor
+
+      </tbody>
+
+	</table>
+
+</%block>

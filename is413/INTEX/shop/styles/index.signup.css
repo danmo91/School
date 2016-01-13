@@ -1,0 +1,14 @@
+
+.form-control{
+
+  margin-bottom:10px;
+
+
+}
+.modal-content {
+    data-backdrop:"false" !important;
+    z-index:1500 !important;
+}
+.modal-backdrop {
+  z-index:0;
+}

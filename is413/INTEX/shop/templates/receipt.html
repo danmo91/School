@@ -1,0 +1,157 @@
+<%inherit file="base.htm" />
+
+<%block name="header">
+
+  <!-- no header -->
+
+</%block>
+
+<%block name="center">
+
+<div class="container">
+  <div class="row form-group">
+        <div class="col-xs-12">
+            <ul class="nav nav-pills nav-justified thumbnail setup-panel">
+                <li class="disabled"><a href="#step-1"
+                    <h4 class="list-group-item-heading">Step 1</h4>
+                    <p class="list-group-item-text">Confirm Order</p>
+                </a></li>
+                <li class="disabled"><a href="#step-2">
+                    <h4 class="list-group-item-heading">Step 2</h4>
+                    <p class="list-group-item-text">Enter Payment</p>
+                </a></li>
+                <li class="active"><a href="#step-3">
+                    <h4 class="list-group-item-heading">Step 3</h4>
+                    <p class="list-group-item-text">Thank You</p>
+                </a></li>
+            </ul>
+        </div>
+  </div>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<div class="panel-title">
+						<div class="row">
+							<div class="col-xs-6">
+								<h5><span class="glyphicon glyphicon-thumbs-up"></span> Order Summary</h5>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="panel-body">
+
+          <%
+            total = 0
+            sub_total = 0
+
+           %>
+
+          <div class="items">
+            %for key,value in items.items():
+
+            <%
+              price = value[0].current_price
+              qty = value[1]
+
+              sub_total =  price * qty
+              total += sub_total
+            %>
+
+            <!-- row -->
+  					<div class="row">
+  						<div class="col-xs-2"><img class="img-responsive" src="${ STATIC_URL }shop/media/product_images/${ value[0].id }.jpg">
+  						</div>
+  						<div class="col-xs-4">
+  							<h4 class="product-name"><strong>${ value[0].name }</strong></h4><h4><small>${ value[0].description}</small></h4>
+  						</div>
+  						<div class="col-xs-6">
+  							<div class="col-xs-6 text-right">
+  								<h6><strong>${ value[0].current_price }<span class="text-muted">x</span></strong></h6>
+  							</div>
+  							<div class="col-xs-4">
+                  <h6><strong>${ value[1] }<span class="text-muted"></span></span></strong></h6>
+  							</div>
+  						</div>
+  					</div>
+  					<hr>
+            <!-- end row -->
+
+            %endfor
+
+          </div>
+
+          <div class="rentals">
+            %for rental in rentals:
+
+            <%
+              total  += rental.rental_price
+            %>
+
+            <!-- row -->
+  					<div class="row">
+  						<div class="col-xs-2"><img class="img-responsive" src="${ STATIC_URL }shop/media/item_images/${ rental.id}.jpg">
+  						</div>
+  						<div class="col-xs-4">
+  							<h4 class="product-name"><strong>${ rental.name }</strong></h4><h4><small>${ rental.description}</small></h4>
+  						</div>
+  						<div class="col-xs-6">
+  							<div class="col-xs-6 text-right">
+  								<h6><strong>${ rental.rental_price }<span class="text-muted">x</span></strong></h6>
+  							</div>
+  							<div class="col-xs-4">
+                  <h6><strong>1<span class="text-muted"></span></span></strong></h6>
+  							</div>
+  						</div>
+  					</div>
+  					<hr>
+            <!-- end row -->
+
+            %endfor
+
+          </div>
+
+
+
+          <!-- shipping and billing informaiton -->
+
+          <div class="row">
+						<div class="col-xs-4 col-xs-offset-2">
+							<h4><strong>Shipping</strong></h4><h4><small></small></h4>
+              <p>${ request.user.first_name + ' ' + request.user.last_name }<p>
+              <p>${ address.street }<p>
+              <p>${ address.city + ', ' + address.state }<p>
+              <p>${ address.zip_code }<p>
+						</div>
+						<div class="col-xs-4">
+              <h4><strong>Details</strong></h4><h4><small></small></h4>
+              <p>Tracking number: #12382378468739</p>
+              <p>Ship Date: </p>
+              <p>Estimated Delivery Date: </p>
+						</div>
+					</div>
+					<hr>
+
+
+				</div>
+				<div class="panel-footer">
+					<div class="row text-center">
+						<div class="col-xs-9">
+							<h4 class="text-right">Total <strong>${ round(total,2) }</strong></h4>
+						</div>
+						<div class="col-xs-3">
+							<a href="/shop/" class="btn btn-success btn-block">
+								Return
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+</%block>

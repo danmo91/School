@@ -1,0 +1,44 @@
+.jumbotron {
+    margin-bottom: 0px;
+    background-image: url("/static/events/media/event_images/eventheader.jpg");
+    background-position: 0% 25%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+    text-shadow: black 0.3em 0.3em 0.3em;
+}
+.navbar-brand {
+  font-family: 'Petit Formal Script', cursive;
+  font-weight: bold;
+}
+.navbar-nav {
+  font-family: 'Arimo', sans-serif;
+  font-size: 15px;
+}
+.eventstyle h1 {
+  font-family: 'Petit Formal Script', cursive;
+}
+.eventstyle p {
+  font-family: 'Arimo', sans-serif;
+}
+.eventstyle h3 {
+  font-family: 'Arimo', sans-serif;
+}
+.breaker{
+  margin: 20px;
+  border-top: 1px solid grey;
+  border-bottom: 1px solid grey;
+  text-align: center;
+  font-size: 20px;
+}
+.eventstyle h5 {
+  font-family: 'Petit Formal Script', cursive;
+  font-size: 30px;
+}
+.lengthy {
+  height:400px;
+}
+.modal-content {
+    data-backdrop:"false";
+    z-index:1020;
+}

@@ -1,0 +1,108 @@
+<%inherit file="/base/templates/base.htm" />
+
+
+<%block name="meta">
+<meta charset="UTF-8">
+<meta name="description" content="Colonial American Products for sale">
+<meta name="keywords" content="Colonial America Products Sale">
+<meta name="author" content="Dan Morain">
+
+</%block>
+
+
+<!-- CSS/JS Links that belong only to the shop app -->
+<%block name="head_links">
+
+<link href="http://ironsummitmedia.github.io/startbootstrap-heroic-features/css/bootstrap.min.css" rel="stylesheet">
+
+
+</%block> <!-- head_links -->
+
+<%block name="shop">
+
+  <%block name="header">
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/homepage/index/">Colonial Heritage Foundation</a>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+            <ul class="nav navbar-nav">
+              <li><a href="/shop/index/">Store</a></li>
+              <li><a href="/shop/index.rentals/">Rentals</a></li>
+              <li id="tab"><a href="/events/index/">Events</a></li>
+            </ul>
+
+            <form class="navbar-form navbar-left" id="search_form" method="POST" action="/shop/index.search/" role="search">
+              <div class="form-group">
+
+                  <input type="text" id="search_input" class="form-control" placeholder="Search">
+
+              </div>
+              <button id="search" type="submit" class="btn btn-success">Go</button>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="#" id="show_cart" >Cart <span class="badge"> ${ num_items} </span></a></li>
+
+
+
+            % if request.user.username != '':
+
+              <li><a href="/shop/index.logout_view/">Logout</a></li>
+              <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${request.user.first_name} <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="/shop/myaccount/">My Account</a></li>
+                </ul>
+              </li>
+
+            % else:
+
+              <li><a href="#" id="show_login_modal">Login</a></li>
+              <li><a href="#" id="show_signup_modal">Signup</a></li>
+
+            % endif
+
+
+
+            </ul>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav> <!-- navbar -->
+
+  </%block>
+
+
+  <%block name="center">
+
+  </%block> <!-- center -->
+
+
+
+
+  <%block name="footer">
+
+    <div class="footer">
+      <nav class="footer navbar navbar-fixed-bottom">
+      </nav>
+    </div>
+
+  </%block> <!-- footer -->
+
+</%block> <!-- shop -->
+
+<%block name="foot_links">
+
+</%block> <!-- foot_links -->

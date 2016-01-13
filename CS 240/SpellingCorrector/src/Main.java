@@ -22,14 +22,13 @@ public class Main {
 		/**
 		 * Create an instance of your corrector here
 		 */
-		ISpellCorrector corrector = null;
+		SpellCorrector corrector = new SpellCorrector();
 
-		// corrector.useDictionary(dictionaryFileName);
-		// String suggestion = corrector.suggestSimilarWord(inputWord);
+		corrector.useDictionary(dictionaryFileName);
+		String suggestion = corrector.suggestSimilarWord(inputWord);
 
-		// System.out.println("Suggestion is: " + suggestion);
-		System.out.println("dictionaryFileName => " + dictionaryFileName);
-		System.out.println("inputWord => " + inputWord);
+		System.out.println("Suggestion is: " + suggestion);
+
 	}
 
 }

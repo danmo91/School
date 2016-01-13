@@ -6,7 +6,7 @@ Our spell checker will only validate a single word rather than each word in a li
 
 ## Requirements
 
-- [] Generate a dictionary (Trie) with words.txt
+-[] Generate a dictionary (Trie) with words.txt
 
 ## Compiling and Running the project
 

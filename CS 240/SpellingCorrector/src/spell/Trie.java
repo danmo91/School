@@ -1,7 +1,6 @@
 package spell;
 
-public class Words implements ITrie {
-
+public class Trie implements ITrie {
 
   // increase these values when i add a word to the trie
   int wordCount;
@@ -11,9 +10,9 @@ public class Words implements ITrie {
     System.out.println("adding a word => " + word);
   }
 
-  public WordNode find(String word) {
+  public TrieNode find(String word) {
     System.out.println("finding word => " + word);
-    return new WordNode();
+    return new TrieNode();
   }
 
   public int getWordCount() {
@@ -27,8 +26,13 @@ public class Words implements ITrie {
     return -1;
   }
 
+  @Override
+  public bool equals(Trie t) {
+    return false;
+  }
+
   // WordNode class has a value and a letter
-  public class WordNode implements ITrie.INode {
+  public class TrieNode implements ITrie.INode {
 
     int value;
     // WordNode [26];

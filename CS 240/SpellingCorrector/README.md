@@ -37,11 +37,21 @@ print => prints object value
 dump => prints whole object
 locals
 
-## Requirements
+## JUNIT Testing
 
--[] Generate a dictionary (Trie) with words.txt
+https://github.com/junit-team/junit/wiki/Getting-started
 
-### Implement Trie class
+### Compile tests
+```sh
+$ javac -cp lib/junit-4.12.jar:hamcrest-core-1.3.jar -sourcepath src/ test/CalculatorTest.java
+```
+### Running tests
+
+```sh
+$ java -cp .:lib/junit-4.12.jar:lib/hamcrest-core-1.3.jar:test/:src/ org.junit.runner.JUnitCore CalculatorTest
+```
+
+### Trie class
 
 #### ToString()
 

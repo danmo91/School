@@ -26,8 +26,7 @@ public class Trie implements ITrie {
     return -1;
   }
 
-  @Override
-  public bool equals(Trie t) {
+  public boolean equals(Trie t) {
     return false;
   }
 

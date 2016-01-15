@@ -43,12 +43,12 @@ https://github.com/junit-team/junit/wiki/Getting-started
 
 ### Compile tests
 ```sh
-$ javac -cp lib/junit-4.12.jar:hamcrest-core-1.3.jar -sourcepath src/ test/CalculatorTest.java
+$ javac -cp lib/junit-4.12.jar:hamcrest-core-1.3.jar -sourcepath src/ -d bin/ test/SpellCorrectorTest.java
 ```
 ### Running tests
 
 ```sh
-$ java -cp .:lib/junit-4.12.jar:lib/hamcrest-core-1.3.jar:test/:src/ org.junit.runner.JUnitCore CalculatorTest
+$ java -cp .:lib/junit-4.12.jar:lib/hamcrest-core-1.3.jar:test/:src/:bin/ org.junit.runner.JUnitCore SpellCorrectorTest
 ```
 
 ### Trie class

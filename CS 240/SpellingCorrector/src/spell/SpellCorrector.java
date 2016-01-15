@@ -4,7 +4,7 @@ import java.io.IOException;
 
 public class SpellCorrector implements ISpellCorrector {
 
-  Trie trieOfWords;
+  public Trie trie;
 
   public void useDictionary(String dictionaryFileName) throws IOException {
     System.out.println("use this dictionary => " + dictionaryFileName);

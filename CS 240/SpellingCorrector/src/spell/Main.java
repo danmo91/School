@@ -18,6 +18,10 @@ public class Main {
 
 		try	{
 
+			if (args.length < 2) {
+				throw new IllegalArgumentException();
+			}
+
 			String dictionaryFileName = args[0];
 			String inputWord = args[1];
 

@@ -32,8 +32,9 @@ stop in [package].[class].[method]
 ### other commands
 run
 step
-print
-dump
+list => show current source code frame
+print => prints object value
+dump => prints whole object
 locals
 
 ## Requirements

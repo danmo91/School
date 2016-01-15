@@ -19,6 +19,8 @@ include the -sourcepath option to show the source code inline with the debugger
 
 ```sh
 $ jdb -classpath bin/ -sourcepath src/ spell.Main [dictionary.txt] [word]
+# debugging test cases
+$ jdb -classpath .:lib/junit-4.12.jar:lib/hamcrest-core-1.3.jar:test/:src/:bin/ org.junit.runner.JUnitCore SpellCorrectorTest
 ```
 
 ### Breakpoints
@@ -38,6 +40,7 @@ stop in spell.Main.main
 ### other commands
 - run
 - step
+- next => step over
 - list => show current source code frame
 - print => prints object value
 - dump => prints whole object
@@ -47,15 +50,11 @@ stop in spell.Main.main
 
 (https://github.com/junit-team/junit/wiki/Getting-started)
 
-### Compile tests
+### Compile and Running tests
 
 ```sh
-$ javac -cp lib/junit-4.12.jar:hamcrest-core-1.3.jar -sourcepath src/ -d bin/ test/SpellCorrectorTest.java
-```
+$ javac -cp lib/junit-4.12.jar:hamcrest-core-1.3.jar -sourcepath src/ -d bin/ -g test/SpellCorrectorTest.java
 
-### Running tests
-
-```sh
 $ java -cp .:lib/junit-4.12.jar:lib/hamcrest-core-1.3.jar:test/:src/:bin/ org.junit.runner.JUnitCore SpellCorrectorTest
 ```
 

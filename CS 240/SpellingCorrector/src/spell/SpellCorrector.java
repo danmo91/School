@@ -4,9 +4,14 @@ import java.io.IOException;
 
 public class SpellCorrector implements ISpellCorrector {
 
-  public Trie trie;
+  public Trie trie = new Trie();
 
   public void useDictionary(String dictionaryFileName) throws IOException {
+
+    //
+
+
+
     System.out.println("use this dictionary => " + dictionaryFileName);
   }
 

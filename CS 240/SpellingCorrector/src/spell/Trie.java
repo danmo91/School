@@ -43,7 +43,7 @@ public class Trie implements ITrie {
   void addHelper(TrieNode node, StringBuilder word) {
     // check if node is null
     if (node == null)
-    return;
+      return;
 
     // BASE CASE: check if string is empty
     if (word.length() == 0) {
@@ -76,7 +76,7 @@ public class Trie implements ITrie {
 
   }
 
-  // returns true if the word contains characters in the set [a-zA-Z]
+  // returns true if the word matches pattern [a-zA-Z]
   public boolean match (String word) {
     Matcher match = this.ALPHA.matcher(word);
     return match.matches();
@@ -84,13 +84,46 @@ public class Trie implements ITrie {
 
   // Searches Trie for matching word, return TrieNode pointer if found, else null
   public TrieNode find(String word) {
-    System.out.println("finding word => " + word);
-
     // make sure word only contains [a-zA-Z]
+    boolean isWord = this.match(word);
+    TrieNode returnNode = null;
+    if (isWord) {
+      StringBuilder wordBuilder = new StringBuilder(word.toLowerCase()); // make sure search word is lowercase
+      returnNode = findHelper(this.root, wordBuilder, returnNode);
+    }
 
+    return returnNode;
+  }
 
+  TrieNode findHelper(TrieNode node, StringBuilder word, TrieNode returnNode) {
+    // BASE CASE: found word
+    if (word.length() == 0) {
+      if (node.value > 0) {
+        returnNode = node;
+        return returnNode;
+      } else {
+        return null;
+      }
+    }
 
-    return new TrieNode();
+    // get first char of string
+    char firstLetter = word.charAt(0);
+
+    // get index based on ascii value of char
+    int index = ((int)firstLetter - (int)'a');
+
+    // check if node exists
+    if (node.childNodes[index] == null) {
+      return null;
+    }
+
+    // childNode
+    TrieNode childNode = node.childNodes[index];
+
+    // trim off first letter
+    word.deleteCharAt(0);
+    return findHelper(childNode, word, returnNode);
+
   }
 
   public boolean equals(Trie t) {

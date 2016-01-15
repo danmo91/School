@@ -204,5 +204,32 @@ public class SpellCorrectorTest {
     assertFalse(test.equals(expect));
   }
 
+  // Trie.find() tests
+  @Test
+  public void findTest() {
+    Trie actual = new Trie();
+    actual.add("dan");
+
+    assertTrue(actual.find("dan") != null);
+  }
+  @Test
+  public void findTest2() {
+    Trie actual = new Trie();
+    actual.add("dan");
+    actual.add("danny");
+
+    assertTrue(actual.find("dann") == null);
+  }
+  @Test
+  public void findTest3() {
+    Trie actual = new Trie();
+    actual.add("dan");
+    actual.add("andy");
+    actual.add("rohit");
+    actual.add("genius");
+
+    assertTrue(actual.find("andy") != null);
+  }
+
 
 }

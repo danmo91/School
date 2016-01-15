@@ -2,6 +2,11 @@ package spell;
 
 public class Words implements ITrie {
 
+
+  // increase these values when i add a word to the trie
+  int wordCount;
+  int nodeCount;
+
   public void add(String word) {
     System.out.println("adding a word => " + word);
   }
@@ -26,7 +31,7 @@ public class Words implements ITrie {
   public class WordNode implements ITrie.INode {
 
     int value;
-    char letter;
+    // WordNode [26];
 
     public int getValue() {
       return this.value;

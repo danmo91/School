@@ -2,14 +2,17 @@
 
 ### Interfaces
 
-A Java interface is a bit like a class, except a Java interface can only contain method signatures and fields. An Java interface cannot contain an implementation of the methods, only the signature (name, parameters and exceptions) of the method. You can use interfaces in Java as a way to achieve polymorphism.
+A Java interface is like a class, except a Java interface can only contain method signatures and fields. An Java interface cannot contain an implementation of the methods, only the signature (name, parameters and exceptions) of the method. You can use interfaces in Java as a way to achieve polymorphism.
+
+interfaces help us work together.  It defines a standard for how a class should be structured
+so we can all work on something together and have a standard interface
 
 ### Constructors
 
 - constructors with different signatures can call other constructors
 
 for example:
-```
+```java
 class Person {
 
   public Person(String name) {
@@ -31,7 +34,7 @@ When is the best time to use a static variable or method?
 
 Example:
 
-```
+```java
 class Person {
 
 
@@ -54,13 +57,13 @@ class Person {
 ### Classes and Overriding default methods
 
 - every class inherits from Object
-```
+```java
 class Person extends Object {
   // my person class
 }
 ```
 
-```
+```java
 @Override
 public string toString() {
   // return string

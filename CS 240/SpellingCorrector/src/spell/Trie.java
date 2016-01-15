@@ -8,8 +8,7 @@ public class Trie implements ITrie {
 
   public int wordCount, nodeCount;
   public TrieNode root;
-  // REGEX pattern for matching words
-  Pattern ALPHA;
+  Pattern ALPHA; // REGEX pattern for matching words
 
   public Trie() {
     this.wordCount = 0;
@@ -28,12 +27,10 @@ public class Trie implements ITrie {
 
   // adds a word to the Trie structure
   public void add(String word) {
-    // make sure word contains alphabetic characters
-    boolean isWord = this.match(word);
+    boolean isWord = this.match(word); // make sure word contains alphabetic characters
     if (isWord) {
       // make word lowercase, convert to StringBuilder
       StringBuilder wordBuilder = new StringBuilder(word.toLowerCase());
-      // add to root node
       addHelper(root, wordBuilder);
     } else
     return;
@@ -41,7 +38,6 @@ public class Trie implements ITrie {
 
   // Helper methods for add()
   void addHelper(TrieNode node, StringBuilder word) {
-    // check if node is null
     if (node == null)
       return;
 
@@ -59,7 +55,7 @@ public class Trie implements ITrie {
     // get index based on ascii value of char
     int index = ((int)firstLetter - (int)'a');
 
-    // check if node exists
+    // create node if DNE
     if (node.childNodes[index] == null) {
       node.childNodes[index] = new TrieNode();
       this.nodeCount++;
@@ -84,14 +80,12 @@ public class Trie implements ITrie {
 
   // Searches Trie for matching word, return TrieNode pointer if found, else null
   public TrieNode find(String word) {
-    // make sure word only contains [a-zA-Z]
-    boolean isWord = this.match(word);
+    boolean isWord = this.match(word); // make sure word only contains [a-zA-Z]
     TrieNode returnNode = null;
     if (isWord) {
       StringBuilder wordBuilder = new StringBuilder(word.toLowerCase()); // make sure search word is lowercase
       returnNode = findHelper(this.root, wordBuilder, returnNode);
     }
-
     return returnNode;
   }
 
@@ -166,8 +160,12 @@ public class Trie implements ITrie {
     }
   }
 
-
-
+  @Override
+  public int hashCode() {
+    int largePrime = 7919;
+    int hash = (int)Math.pow(this.nodeCount, this.wordCount) * largePrime;
+    return hash;
+  }
 
   /**
    * TrieNode class implements the ITrie.INode interface
@@ -202,7 +200,5 @@ public class Trie implements ITrie {
       }
       return result;
     }
-
   }
-
 }

@@ -231,5 +231,15 @@ public class SpellCorrectorTest {
     assertTrue(actual.find("andy") != null);
   }
 
+  // Trie hashCode() tests
+  @Test
+  public void hashCodeTest () {
+    Trie actual = new Trie();
+    actual.add("dan");
+    int hash = actual.hashCode();
+
+    // hashCode = nodeCount (3) ^ wordCount (1) * largePrime (7919)
+    assertEquals(23757, actual.hashCode());
+  }
 
 }

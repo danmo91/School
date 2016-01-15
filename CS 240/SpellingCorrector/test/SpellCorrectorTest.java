@@ -173,10 +173,10 @@ public class SpellCorrectorTest {
   @Test
   public void trieNodeEqualsTest5() {
     Trie test = new Trie();
-    test.add("dan");
-    test.add("andy");
-    test.add("donut");
-    test.add("zeebra");
+    test.add("DAN");
+    test.add("ANDY");
+    test.add("DONUT");
+    test.add("ZEEBRA");
 
     Trie expect = new Trie();
     expect.add("dan");

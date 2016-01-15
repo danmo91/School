@@ -8,6 +8,8 @@ import spell.Trie;
 import spell.Trie.TrieNode;
 
 public class SpellCorrectorTest {
+
+  // Trie.add() tests
   @Test
   public void addWordToTrie() {
 
@@ -26,9 +28,181 @@ public class SpellCorrectorTest {
     // assertTrue(testTrie.equals(expectedTrie));
 
   }
+
+  // Trie.match() tests
   @Test
   public void wordWithDigits() {
-    Trie trie = new Trie();
-    assertFalse(trie.match("dan1"));
+    Trie testTrie = new Trie();
+    assertFalse(testTrie.match("dan1"));
   }
+
+  // Trie.getWordCount() tests
+  @Test
+  public void testWordCount() {
+    Trie testTrie = new Trie();
+    testTrie.add("dan");
+    assertEquals(testTrie.getWordCount(), 1);
+  }
+  @Test
+  public void testWordCount2() {
+    Trie testTrie = new Trie();
+    testTrie.add("dan");
+    testTrie.add("andy");
+    assertEquals(testTrie.getWordCount(), 2);
+  }
+  @Test
+  public void testWordCount3() {
+    Trie testTrie = new Trie();
+    testTrie.add("dan");
+    testTrie.add("dan");
+    assertEquals(testTrie.getWordCount(), 1); // returns number of unique words
+  }
+  @Test
+  public void testWordCount4() {
+    Trie testTrie = new Trie();
+    testTrie.add("dan");
+    testTrie.add("dan1");
+    assertEquals(testTrie.getWordCount(), 1); // skips bad words
+  }
+
+  // Trie.getNodeCount() tests
+  @Test
+  public void testNodeCount() {
+    Trie testTrie = new Trie();
+    testTrie.add("dan");
+    assertEquals(testTrie.getNodeCount(), 3);
+  }
+  @Test
+  public void testNodeCount2() {
+    Trie testTrie = new Trie();
+    testTrie.add("dan");
+    testTrie.add("danny");
+    assertEquals(testTrie.getNodeCount(), 5);
+  }
+  @Test
+  public void testNodeCount3() {
+    Trie testTrie = new Trie();
+    testTrie.add("dan");
+    testTrie.add("andy");
+    assertEquals(testTrie.getNodeCount(), 7);
+  }
+  @Test
+  public void testNodeCount4() {
+    Trie testTrie = new Trie();
+    testTrie.add("dan");
+    testTrie.add("dan1");
+    assertEquals(testTrie.getNodeCount(), 3);
+  }
+
+  // adding char test
+  @Test
+  public void addingCharTest () {
+    char addLetter = (char)(2 + (int)'a');
+    assertEquals(addLetter, 'c');
+  }
+
+  // Trie.toString() tests
+  @Test
+  public void toStringTest() {
+    Trie testTrie = new Trie();
+    testTrie.add("andy");
+    String expectedString = "andy\n";
+    String actualString = testTrie.toString();
+    assertTrue(actualString.equals(expectedString));
+  }
+  @Test // toString prints in alphabetical order
+  public void toStringTest2() {
+    Trie testTrie = new Trie();
+    testTrie.add("dan");
+    testTrie.add("andy");
+    String expectedString = "andy\ndan\n";
+    String actualString = testTrie.toString();
+    assertTrue(actualString.equals(expectedString));
+  }
+  @Test // toString prints in alphabetical order
+  public void toStringTest3() {
+    Trie testTrie = new Trie();
+    testTrie.add("dan");
+    testTrie.add("andy");
+    testTrie.add("cat");
+    String expectedString = "andy\ncat\ndan\n";
+    String actualString = testTrie.toString();
+    assertTrue(actualString.equals(expectedString));
+  }
+
+  // TrieNode.equals() tests
+  @Test
+  public void trieNodeEqualsTest() {
+    Trie test = new Trie();
+    test.add("a");
+
+    assertTrue(test.equals(test));
+  }
+  @Test
+  public void trieNodeEqualsTest2() {
+    Trie test = new Trie();
+    test.add("a");
+
+    Trie expect = new Trie();
+    expect.add("b");
+
+    assertFalse(test.equals(expect));
+  }
+  @Test
+  public void trieNodeEqualsTest3() {
+    Trie test = new Trie();
+    test.add("dan");
+    test.add("andy");
+    test.add("driving");
+    test.add("burger");
+
+    assertTrue(test.equals(test));
+  }
+  @Test
+  public void trieNodeEqualsTest4() {
+    Trie test = new Trie();
+    test.add("dan");
+    test.add("andy");
+
+    Trie expect = new Trie();
+    expect.add("dann");
+    expect.add("andy");
+
+    assertFalse(test.equals(expect));
+  }
+  @Test
+  public void trieNodeEqualsTest5() {
+    Trie test = new Trie();
+    test.add("dan");
+    test.add("andy");
+    test.add("donut");
+    test.add("zeebra");
+
+    Trie expect = new Trie();
+    expect.add("dan");
+    expect.add("andy");
+    expect.add("donut");
+    expect.add("zeebra");
+
+    assertTrue(test.equals(expect));
+  }
+  @Test
+  public void trieNodeEqualsTest6() {
+    Trie test = new Trie();
+    test.add("dan");
+    test.add("dan");
+    test.add("andy");
+    test.add("donut");
+    test.add("zeebra");
+
+    Trie expect = new Trie();
+    expect.add("dan");
+    expect.add("andy");
+    expect.add("donut");
+    expect.add("zeebra");
+
+    assertFalse(test.equals(expect));
+  }
+
+
 }

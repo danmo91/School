@@ -97,7 +97,7 @@ class Trie {
 
   @Override
   public bool equals(Trie t) {
-    // check classType
+    // check getClass type
     // check for null
 
     // check word count

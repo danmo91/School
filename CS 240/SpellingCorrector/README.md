@@ -8,12 +8,13 @@ Our spell checker will only validate a single word rather than each word in a li
 
 ``` sh
 # compile with -g for jdb debugging information
-$ javac src/spell/*.java -d bin/ -g
+$ javac -g -d bin/ src/spell/*.java
 $ java -cp bin/ spell.Main [dictionary.txt] [word]
 ```
 
-## Debugging
-compile with -g option to generate debugging information
+## Debugging with JDB
+
+(http://www.javaworld.com/article/2077445/testing-debugging/debug-with-jdb.html)
 include the -sourcepath option to show the source code inline with the debugger
 
 ```sh
@@ -21,39 +22,46 @@ $ jdb -classpath bin/ -sourcepath src/ spell.Main [dictionary.txt] [word]
 ```
 
 ### Breakpoints
-```sh
-stop at [class]:[line number]
-# stop at beginning of main method
-stop in spell.Main.main
 
+Examples of setting breakpoints:
+
+```sh
+# stop at specific line number
+stop at [class]:[line number]
+stop at Main:21
+
+# stop at beginning of main method
 stop in [package].[class].[method]
+stop in spell.Main.main
 ```
 
 ### other commands
-run
-step
-list => show current source code frame
-print => prints object value
-dump => prints whole object
-locals
+- run
+- step
+- list => show current source code frame
+- print => prints object value
+- dump => prints whole object
+- locals
 
 ## JUNIT Testing
 
-https://github.com/junit-team/junit/wiki/Getting-started
+(https://github.com/junit-team/junit/wiki/Getting-started)
 
 ### Compile tests
+
 ```sh
 $ javac -cp lib/junit-4.12.jar:hamcrest-core-1.3.jar -sourcepath src/ -d bin/ test/SpellCorrectorTest.java
 ```
+
 ### Running tests
 
 ```sh
 $ java -cp .:lib/junit-4.12.jar:lib/hamcrest-core-1.3.jar:test/:src/:bin/ org.junit.runner.JUnitCore SpellCorrectorTest
 ```
 
-### Trie class
+## Trie class
 
-#### ToString()
+### ToString()
 
 ```java
 class Trie {

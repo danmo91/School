@@ -163,7 +163,10 @@ public class Trie implements ITrie {
   @Override
   public int hashCode() {
     int largePrime = 7919;
-    int hash = (int)Math.pow(this.nodeCount, this.wordCount) * largePrime;
+    int hash = (int)Math.pow(this.nodeCount * this.wordCount, largePrime);
+
+    // to add more entropy check how many of the 26 nodes we have in root
+
     return hash;
   }
 

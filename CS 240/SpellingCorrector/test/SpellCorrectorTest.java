@@ -239,7 +239,53 @@ public class SpellCorrectorTest {
     int hash = actual.hashCode();
 
     // hashCode = nodeCount (3) ^ wordCount (1) * largePrime (7919)
-    assertEquals(23757, actual.hashCode());
+    assertEquals(2147483647, actual.hashCode());
+  }
+
+  // SpellCorrector useDictionary() tests
+  @Test
+  public void useDictionaryTest () {
+    SpellCorrector test = new SpellCorrector();
+    String dictionaryFileName = "words/small.txt";
+
+    try {
+      test.useDictionary(dictionaryFileName);
+    } catch (Exception e) {
+      System.out.println("Exception in test => " + e);
+    }
+
+    assertEquals(10, test.trie.getWordCount());
+    assertTrue(test.trie.root.equals(test.trie.root));
+
+  }
+  @Test
+  public void useDictionaryTest2 () {
+    SpellCorrector test = new SpellCorrector();
+    String dictionaryFileName = "words/med.txt";
+
+    try {
+      test.useDictionary(dictionaryFileName);
+    } catch (Exception e) {
+      System.out.println("Exception in test => " + e);
+    }
+
+    assertEquals(64, test.trie.getWordCount());
+    assertTrue(test.trie.root.equals(test.trie.root));
+
+  }
+  @Test
+  public void useDictionaryTest3 () {
+    SpellCorrector test = new SpellCorrector();
+    String dictionaryFileName = "words/med";
+
+    try {
+      test.useDictionary(dictionaryFileName);
+    } catch (Exception e) {
+      System.out.println("Exception in test => " + e);
+    }
+
+    assertEquals(0, test.trie.getWordCount());
+
   }
 
 }

@@ -37,7 +37,12 @@ public class SpellCorrector implements ISpellCorrector {
   }
 
   public String suggestSimilarWord(String inputWord) throws NoSimilarWordFoundException {
-    System.out.println("suggesting a word similar to => " + inputWord);
+
+    // apply different transformations until i find the best match
+    // Delete, transposition, alteration, insertion
+
+    
+
     return "empty string";
   }
 

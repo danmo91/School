@@ -288,4 +288,21 @@ public class SpellCorrectorTest {
 
   }
 
+  @Test
+  public void useDictionaryTest4 () {
+    SpellCorrector test = new SpellCorrector();
+    String dictionaryFileName = "words/words.txt";
+    String dictionaryFileName2 = "words/words2.txt";
+
+    SpellCorrector expected = new SpellCorrector();
+
+    try {
+      test.useDictionary(dictionaryFileName);
+      expected.useDictionary(dictionaryFileName2);
+    } catch (Exception e) {
+      System.out.println("Exception in test => " + e);
+    }
+    assertFalse(test.trie.root.equals(expected.trie.root));
+  }
+
 }

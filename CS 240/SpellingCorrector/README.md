@@ -4,6 +4,20 @@ Google provides a more powerful spell corrector for validating the keywords we t
 
 Our spell checker will only validate a single word rather than each word in a list of words.
 
+## Functionality
+
+- If the word is found, the SpellingCorrector will return the input word in 'lowercase'
+- If the word is not found, the SpellingCorrector will return the most similar word, again in 'lowercase'
+- If no similar word is found (a word with a Distance < 3) throw a NoSimilarWordFoundException
+
+Similar word criteria:
+1. has the "closest" edit distance
+2. found the most time in the dictionary
+3. if two words have the same edit distance and frequency, favor the first alphabetical answer
+
+
+
+
 ## Compiling and Running the project
 
 ``` sh

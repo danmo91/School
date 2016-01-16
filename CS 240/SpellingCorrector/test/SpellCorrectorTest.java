@@ -305,4 +305,19 @@ public class SpellCorrectorTest {
     assertFalse(test.trie.root.equals(expected.trie.root));
   }
 
+  // suggestSimilarWord Test
+  @Test
+  public void suggestSimilarWordTest() {
+    SpellCorrector test = new SpellCorrector();
+    String dictionaryFileName = "words/small.txt";
+
+    try {
+      test.useDictionary(dictionaryFileName);
+      String similarWord = test.suggestSimilarWord("ANDY");
+      assertTrue(similarWord.equals("andy"));
+    } catch (Exception e) {
+      System.out.println("Exception in test => " + e);
+    }
+  }
+
 }

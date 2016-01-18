@@ -36,18 +36,14 @@ public class SpellCorrector implements ISpellCorrector {
     StringBuilder bestWord = new StringBuilder();
 
     // delete, edit distance 1
-    transformWord_delete(bestNode, bestWord, inputWord);
+    bestNode = transformWord_delete(bestNode, bestWord, inputWord);
 
-    // if null then
-      // apply different transformations until i find the best match
-      // Delete, transposition, alteration, insertion
-      // because i get the node back, i can read the value from it
-      // to determine the frequency
+    System.out.println("suggested word => " + bestWord.toString());
 
     return bestWord.toString();
   }
 
-  public void selectBestWord(StringBuilder bestWord, String transformedWord, TrieNode bestNode, TrieNode resultNode) {
+  public TrieNode selectBestWord(StringBuilder bestWord, String transformedWord, TrieNode bestNode, TrieNode resultNode) {
     if (resultNode != null) {
       // compare Node values
       if (resultNode.getValue() > bestNode.getValue()) {
@@ -55,12 +51,13 @@ public class SpellCorrector implements ISpellCorrector {
         setBestWord(bestWord, transformedWord);
       } else if (resultNode.getValue() == bestNode.getValue()) {
         // favor alpha order
-        if (transformedWord.compareTo(bestWord.toString()) > 0) {
+        if (transformedWord.compareTo(bestWord.toString()) < 0) {
           bestNode = resultNode;
           setBestWord(bestWord, transformedWord);
         }
       }
     }
+    return bestNode;
   }
 
   public void setBestWord(StringBuilder bestWord, String transformedWord) {
@@ -68,13 +65,14 @@ public class SpellCorrector implements ISpellCorrector {
     bestWord.append(transformedWord);
   }
 
-  public void transformWord_delete(TrieNode bestNode, StringBuilder bestWord, String inputWord) {
+  public TrieNode transformWord_delete(TrieNode bestNode, StringBuilder bestWord, String inputWord) {
     for (int i = 0; i < inputWord.length(); i++) {
       StringBuilder inputWordBuilder = new StringBuilder(inputWord);
       String transformedWord = inputWordBuilder.deleteCharAt(i).toString();
       TrieNode resultNode = trie.find(transformedWord);
-      selectBestWord(bestWord, transformedWord, bestNode, resultNode);
+      bestNode = selectBestWord(bestWord, transformedWord, bestNode, resultNode);
     }
+    return bestNode;
   }
 
 }

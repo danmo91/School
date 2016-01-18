@@ -254,7 +254,7 @@ public class SpellCorrectorTest {
       System.out.println("Exception in test => " + e);
     }
 
-    assertEquals(10, test.trie.getWordCount());
+    assertEquals(12, test.trie.getWordCount());
     assertTrue(test.trie.root.equals(test.trie.root));
 
   }
@@ -320,14 +320,28 @@ public class SpellCorrectorTest {
     }
   }
   @Test
-  public void suggestSimilarWordTest2() {
+  public void transformWord_deleteTest() {
     SpellCorrector test = new SpellCorrector();
     String dictionaryFileName = "words/small.txt";
 
     try {
       test.useDictionary(dictionaryFileName);
-      String similarWord = test.suggestSimilarWord("any");
+      String similarWord = test.suggestSimilarWord("anddy");
       assertTrue(similarWord.equals("andy"));
+    } catch (Exception e) {
+      System.out.println("Exception in test => " + e);
+    }
+  }
+
+  @Test // favor words with greater value
+  public void transformWord_deleteTest2() {
+    SpellCorrector test = new SpellCorrector();
+    String dictionaryFileName = "words/small.txt";
+
+    try {
+      test.useDictionary(dictionaryFileName);
+      String similarWord = test.suggestSimilarWord("cool");
+      assertTrue(similarWord.equals("col"));
     } catch (Exception e) {
       System.out.println("Exception in test => " + e);
     }

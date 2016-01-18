@@ -133,3 +133,42 @@ class Trie {
 
 }
 ```
+### Delete
+
+- each transformation will use the forLoop, check if resultNode is null, and apply the rules for selecting the best Node
+
+```java
+
+  public void selectBestNode(TrieNode bestNode, TrieNode resultNode, StringBuilder bestWord, String transformedWord) {
+    if (resultNode != null) {
+      // check if result value > bestNode value
+      if (resultNode.getValue() > bestNode.getValue()) {
+        bestNode = resultNode;
+        bestWord = transformedWord;
+      } else if (resultNode.getValue() == bestNode.getValue()) {
+        // favor alpha order with CompareTo()
+        if (transformedWord.compareTo(bestWord.toString())) {
+          bestNode = resultNode;
+          // clear StringBuilder
+          bestWord.setLength(0);
+          bestWord.append(transformedWord);
+        }
+      }
+    }
+  }
+
+  public void delete(TrieNode bestNode, StringBuilder bestWord, String inputWord) {
+    // editDistance = 1;
+    for (int i = 0; i < inputWord.length; i++) {
+      String transformedWord = inputWord.deleteCharAt(i);
+      TrieNode resultNode = trie.find(transformedWord);
+      selectBestNode(bestNode, resultNode, bestWord, transformedWord);
+    }
+
+  }
+
+
+
+
+
+```

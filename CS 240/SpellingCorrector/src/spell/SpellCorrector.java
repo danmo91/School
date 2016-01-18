@@ -13,27 +13,16 @@ public class SpellCorrector implements ISpellCorrector {
   }
 
   public void useDictionary(String dictionaryFileName) throws IOException {
-
     try {
-      // make sure fileName ends to '.txt'
-      if (dictionaryFileName.endsWith(".txt")) {
-        // import the file
-        File dictionary = new File(dictionaryFileName);
-        Scanner scanner = new Scanner(dictionary);
-        // foreach word in file
-        while (scanner.hasNext()) {
-          String token = scanner.next();
-          // add word to Trie
-          trie.add(token);
-        }
-
-        scanner.close();
+      File dictionary = new File(dictionaryFileName);
+      Scanner scanner = new Scanner(dictionary);
+      while (scanner.hasNext()) {
+        trie.add(scanner.next());
       }
-
+      scanner.close();
     } catch (Exception e) {
       System.out.println("Exception => " + e);
     }
-
   }
 
   public String suggestSimilarWord(String inputWord) throws NoSimilarWordFoundException {
@@ -43,13 +32,49 @@ public class SpellCorrector implements ISpellCorrector {
       return inputWord.toLowerCase();
     }
 
+    TrieNode bestNode = new TrieNode(); // should be null? or having getValue() return 0 enough?
+    StringBuilder bestWord = new StringBuilder();
+
+    // delete, edit distance 1
+    transformWord_delete(bestNode, bestWord, inputWord);
+
     // if null then
       // apply different transformations until i find the best match
       // Delete, transposition, alteration, insertion
+      // because i get the node back, i can read the value from it
+      // to determine the frequency
 
+    return bestWord.toString();
+  }
 
+  public void selectBestWord(StringBuilder bestWord, String transformedWord, TrieNode bestNode, TrieNode resultNode) {
+    if (resultNode != null) {
+      // compare Node values
+      if (resultNode.getValue() > bestNode.getValue()) {
+        bestNode = resultNode;
+        setBestWord(bestWord, transformedWord);
+      } else if (resultNode.getValue() == bestNode.getValue()) {
+        // favor alpha order
+        if (transformedWord.compareTo(bestWord.toString()) > 0) {
+          bestNode = resultNode;
+          setBestWord(bestWord, transformedWord);
+        }
+      }
+    }
+  }
 
-    return "empty string";
+  public void setBestWord(StringBuilder bestWord, String transformedWord) {
+    bestWord.setLength(0); // clear StringBuilder
+    bestWord.append(transformedWord);
+  }
+
+  public void transformWord_delete(TrieNode bestNode, StringBuilder bestWord, String inputWord) {
+    for (int i = 0; i < inputWord.length(); i++) {
+      StringBuilder inputWordBuilder = new StringBuilder(inputWord);
+      String transformedWord = inputWordBuilder.deleteCharAt(i).toString();
+      TrieNode resultNode = trie.find(transformedWord);
+      selectBestWord(bestWord, transformedWord, bestNode, resultNode);
+    }
   }
 
 }

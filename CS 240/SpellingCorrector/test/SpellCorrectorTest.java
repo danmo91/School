@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import spell.SpellCorrector;
 import spell.Trie;
-import spell.Trie.TrieNode;
+import spell.TrieNode;
 
 public class SpellCorrectorTest {
 
@@ -305,7 +305,7 @@ public class SpellCorrectorTest {
     assertFalse(test.trie.root.equals(expected.trie.root));
   }
 
-  // suggestSimilarWord Test
+  // suggestSimilarWord Tests
   @Test
   public void suggestSimilarWordTest() {
     SpellCorrector test = new SpellCorrector();
@@ -319,5 +319,19 @@ public class SpellCorrectorTest {
       System.out.println("Exception in test => " + e);
     }
   }
+  @Test
+  public void suggestSimilarWordTest2() {
+    SpellCorrector test = new SpellCorrector();
+    String dictionaryFileName = "words/small.txt";
+
+    try {
+      test.useDictionary(dictionaryFileName);
+      String similarWord = test.suggestSimilarWord("any");
+      assertTrue(similarWord.equals("andy"));
+    } catch (Exception e) {
+      System.out.println("Exception in test => " + e);
+    }
+  }
+
 
 }

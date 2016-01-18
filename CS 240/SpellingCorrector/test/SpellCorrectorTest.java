@@ -347,5 +347,19 @@ public class SpellCorrectorTest {
     }
   }
 
+  @Test // favor words in alphabetical order
+  public void transformWord_deleteTest3() {
+    SpellCorrector test = new SpellCorrector();
+    String dictionaryFileName = "words/wordsWithDuplicateWords.txt";
+
+    try {
+      test.useDictionary(dictionaryFileName);
+      String similarWord = test.suggestSimilarWord("bird");
+      assertTrue(similarWord.equals("bid"));
+    } catch (Exception e) {
+      System.out.println("Exception in test => " + e);
+    }
+  }
+
 
 }

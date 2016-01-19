@@ -204,6 +204,22 @@ public class SpellCorrectorTest {
     assertFalse(test.equals(expect));
   }
 
+  @Test
+  public void trieEqualsTest() {
+
+    try {
+      SpellCorrector test = new SpellCorrector();
+      test.useDictionary("words/valueTest.txt");
+
+      SpellCorrector test2 = new SpellCorrector();
+      test.useDictionary("words/valueTest2.txt");
+
+      assertFalse(test.trie.equals(test2.trie));
+    } catch (Exception e) {
+      System.out.println("exception in trieEqualsTest => " + e);
+    }
+  }
+
   // Trie.find() tests
   @Test
   public void findTest() {
@@ -361,27 +377,32 @@ public class SpellCorrectorTest {
     }
   }
 
-  @Test
+  @Test // transposition test
   public void transformWord_transposeTest() {
     SpellCorrector test = new SpellCorrector();
     String dictionaryFileName = "words/transposeTest.txt";
 
     try {
       test.useDictionary(dictionaryFileName);
-      TrieNode bestNode = new TrieNode();
-      StringBuilder bestWord = new StringBuilder();
-      String inputWord = "house";
-
-      bestNode = test.transformWord_transpose(bestNode, bestWord, inputWord);
-      assertTrue(bestWord.toString().equals("hosue"));
-
-
-      // String similarWord = test.suggestSimilarWord("house");
-      // assertTrue(similarWord.equals("hosue"));
+      String similarWord = test.suggestSimilarWord("house");
+      assertTrue(similarWord.equals("hosue"));
     } catch (Exception e) {
       System.out.println("Exception in transformWord_transposeTest => " + e);
     }
   }
 
+  // @Test // alteration test
+  // public void transformWord_alterateTest() {
+  //   SpellCorrector test = new SpellCorrector();
+  //   String dictionaryFileName = "words/alterateTest.txt";
+  //
+  //   try {
+  //     test.useDictionary(dictionaryFileName);
+  //     String similarWord = test.suggestSimilarWord("bob");
+  //     assertTrue(similarWord.equals("aob"));
+  //   } catch (Exception e) {
+  //     System.out.println("Exception in transformWord_alterateTest => " + e);
+  //   }
+  // }
 
 }

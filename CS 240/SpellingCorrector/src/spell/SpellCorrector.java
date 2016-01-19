@@ -37,7 +37,7 @@ public class SpellCorrector implements ISpellCorrector {
 
     // delete, edit distance 1
     bestNode = transformWord_delete(bestNode, bestWord, inputWord);
-    // bestNode = transformWord_transpose(bestNode, bestWord, inputWord);
+    bestNode = transformWord_transpose(bestNode, bestWord, inputWord);
 
     System.out.println("suggested word => " + bestWord.toString());
 

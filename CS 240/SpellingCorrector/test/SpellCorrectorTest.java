@@ -405,4 +405,46 @@ public class SpellCorrectorTest {
     }
   }
 
+  @Test // alteration test
+  public void transformWord_alterateTest2() {
+    SpellCorrector test = new SpellCorrector();
+    String dictionaryFileName = "words/alterateTest2.txt";
+
+    try {
+      test.useDictionary(dictionaryFileName);
+      String similarWord = test.suggestSimilarWord("bob");
+      assertTrue(similarWord.equals("eob"));
+    } catch (Exception e) {
+      System.out.println("Exception in transformWord_alterateTest => " + e);
+    }
+  }
+
+  @Test // alteration test
+  public void transformWord_insert() {
+    SpellCorrector test = new SpellCorrector();
+    String dictionaryFileName = "words/insertTest.txt";
+
+    try {
+      test.useDictionary(dictionaryFileName);
+      String similarWord = test.suggestSimilarWord("ask");
+      assertTrue(similarWord.equals("aask"));
+    } catch (Exception e) {
+      System.out.println("Exception in transformWord_alterateTest => " + e);
+    }
+  }
+
+  @Test // alteration test
+  public void transformWord_insert2() {
+    SpellCorrector test = new SpellCorrector();
+    String dictionaryFileName = "words/insertTest2.txt";
+
+    try {
+      test.useDictionary(dictionaryFileName);
+      String similarWord = test.suggestSimilarWord("ask");
+      assertTrue(similarWord.equals("askc"));
+    } catch (Exception e) {
+      System.out.println("Exception in transformWord_alterateTest => " + e);
+    }
+  }
+
 }

@@ -39,6 +39,7 @@ public class SpellCorrector implements ISpellCorrector {
     bestNode = transformWord_delete(bestNode, bestWord, inputWord);
     bestNode = transformWord_transpose(bestNode, bestWord, inputWord);
     bestNode = transformWord_alterate(bestNode, bestWord, inputWord);
+    bestNode = transformWord_insert(bestNode, bestWord, inputWord);
 
     return bestWord.toString();
   }
@@ -96,7 +97,7 @@ public class SpellCorrector implements ISpellCorrector {
       for (int j = 0; j < 26; j++) {
         StringBuilder inputWordBuilder = new StringBuilder(inputWord);
         // calculate char from index j
-        char addLetter = (char)(i + (int)'a');
+        char addLetter = (char)(j + (int)'a');
         // setCharAt(i, ch)
         inputWordBuilder.setCharAt(i, addLetter);
         String transformedWord = inputWordBuilder.toString();
@@ -106,4 +107,20 @@ public class SpellCorrector implements ISpellCorrector {
     }
     return bestNode;
   }
+
+  public TrieNode transformWord_insert(TrieNode bestNode, StringBuilder bestWord, String inputWord) {
+    for (int i = 0; i < inputWord.length() + 1; i++) {
+      for (int j = 0; j < 26; j++) {
+        StringBuilder inputWordBuilder = new StringBuilder(inputWord);
+        char addLetter = (char)(j + (int)'a');
+        inputWordBuilder.insert(i, addLetter);
+        String transformedWord = inputWordBuilder.toString();
+        TrieNode resultNode = trie.find(transformedWord);
+        bestNode = selectBestWord(bestWord, transformedWord, bestNode, resultNode);
+      }
+    }
+
+    return bestNode;
+  }
+
 }

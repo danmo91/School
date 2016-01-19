@@ -35,6 +35,8 @@ include the -sourcepath option to show the source code inline with the debugger
 $ jdb -classpath bin/ -sourcepath src/ spell.Main [dictionary.txt] [word]
 # debugging test cases
 $ jdb -classpath .:lib/junit-4.12.jar:lib/hamcrest-core-1.3.jar:test/:src/:bin/ org.junit.runner.JUnitCore SpellCorrectorTest
+
+$ rlwrap-jdb -classpath .:lib/junit-4.12.jar:lib/hamcrest-core-1.3.jar:test/:src/:bin/ org.junit.runner.JUnitCore SpellCorrectorTest
 ```
 
 ### Breakpoints

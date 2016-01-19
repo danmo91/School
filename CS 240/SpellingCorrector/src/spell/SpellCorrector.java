@@ -37,6 +37,7 @@ public class SpellCorrector implements ISpellCorrector {
 
     // delete, edit distance 1
     bestNode = transformWord_delete(bestNode, bestWord, inputWord);
+    // bestNode = transformWord_transpose(bestNode, bestWord, inputWord);
 
     System.out.println("suggested word => " + bestWord.toString());
 
@@ -75,4 +76,19 @@ public class SpellCorrector implements ISpellCorrector {
     return bestNode;
   }
 
+  public TrieNode transformWord_transpose(TrieNode bestNode, StringBuilder bestWord, String inputWord) {
+    for (int i = 0; i < inputWord.length() - 1; i++) {
+      // swap chars
+      char inputWordBuilder[] = inputWord.toCharArray();
+      char tmp = inputWordBuilder[i];
+      inputWordBuilder[i] = inputWordBuilder[i+1];
+      inputWordBuilder[i+1] = tmp;
+      String transformedWord = new String(inputWordBuilder);
+
+      // find node
+      TrieNode resultNode = trie.find(transformedWord);
+      bestNode = selectBestWord(bestWord, transformedWord, bestNode, resultNode);
+    }
+    return bestNode;
+  }
 }

@@ -350,7 +350,7 @@ public class SpellCorrectorTest {
   @Test // favor words in alphabetical order
   public void transformWord_deleteTest3() {
     SpellCorrector test = new SpellCorrector();
-    String dictionaryFileName = "words/wordsWithDuplicateWords.txt";
+    String dictionaryFileName = "words/deleteTest.txt";
 
     try {
       test.useDictionary(dictionaryFileName);
@@ -358,6 +358,28 @@ public class SpellCorrectorTest {
       assertTrue(similarWord.equals("bid"));
     } catch (Exception e) {
       System.out.println("Exception in test => " + e);
+    }
+  }
+
+  @Test
+  public void transformWord_transposeTest() {
+    SpellCorrector test = new SpellCorrector();
+    String dictionaryFileName = "words/transposeTest.txt";
+
+    try {
+      test.useDictionary(dictionaryFileName);
+      TrieNode bestNode = new TrieNode();
+      StringBuilder bestWord = new StringBuilder();
+      String inputWord = "house";
+
+      bestNode = test.transformWord_transpose(bestNode, bestWord, inputWord);
+      assertTrue(bestWord.toString().equals("hosue"));
+
+
+      // String similarWord = test.suggestSimilarWord("house");
+      // assertTrue(similarWord.equals("hosue"));
+    } catch (Exception e) {
+      System.out.println("Exception in transformWord_transposeTest => " + e);
     }
   }
 

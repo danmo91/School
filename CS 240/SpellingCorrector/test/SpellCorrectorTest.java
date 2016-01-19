@@ -132,6 +132,16 @@ public class SpellCorrectorTest {
     assertTrue(actualString.equals(expectedString));
   }
 
+  // @Test // toString prints in alphabetical order
+  // public void toStringTest3() {
+  //   SpellCorrector test = new SpellCorrector();
+  //   String dictionaryFileName = "words/"
+  //
+  //   String expectedString = "andy\ncat\ndan\n";
+  //   String actualString = testTrie.toString();
+  //   assertTrue(actualString.equals(expectedString));
+  // }
+
   // TrieNode.equals() tests
   @Test
   public void trieNodeEqualsTest() {

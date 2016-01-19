@@ -12,7 +12,7 @@ public class Trie implements ITrie {
 
   public Trie() {
     this.wordCount = 0;
-    this.nodeCount = 0;
+    this.nodeCount = 1;
     this.root = new TrieNode();
     this.ALPHA = Pattern.compile("[a-zA-Z]+");
   }

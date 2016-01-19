@@ -391,18 +391,18 @@ public class SpellCorrectorTest {
     }
   }
 
-  // @Test // alteration test
-  // public void transformWord_alterateTest() {
-  //   SpellCorrector test = new SpellCorrector();
-  //   String dictionaryFileName = "words/alterateTest.txt";
-  //
-  //   try {
-  //     test.useDictionary(dictionaryFileName);
-  //     String similarWord = test.suggestSimilarWord("bob");
-  //     assertTrue(similarWord.equals("aob"));
-  //   } catch (Exception e) {
-  //     System.out.println("Exception in transformWord_alterateTest => " + e);
-  //   }
-  // }
+  @Test // alteration test
+  public void transformWord_alterateTest() {
+    SpellCorrector test = new SpellCorrector();
+    String dictionaryFileName = "words/alterateTest.txt";
+
+    try {
+      test.useDictionary(dictionaryFileName);
+      String similarWord = test.suggestSimilarWord("bob");
+      assertTrue(similarWord.equals("aob"));
+    } catch (Exception e) {
+      System.out.println("Exception in transformWord_alterateTest => " + e);
+    }
+  }
 
 }

@@ -72,28 +72,28 @@ public class SpellCorrectorTest {
   public void testNodeCount() {
     Trie testTrie = new Trie();
     testTrie.add("dan");
-    assertEquals(testTrie.getNodeCount(), 3);
+    assertEquals(testTrie.getNodeCount(), 4);
   }
   @Test
   public void testNodeCount2() {
     Trie testTrie = new Trie();
     testTrie.add("dan");
     testTrie.add("danny");
-    assertEquals(testTrie.getNodeCount(), 5);
+    assertEquals(testTrie.getNodeCount(), 6);
   }
   @Test
   public void testNodeCount3() {
     Trie testTrie = new Trie();
     testTrie.add("dan");
     testTrie.add("andy");
-    assertEquals(testTrie.getNodeCount(), 7);
+    assertEquals(testTrie.getNodeCount(), 8);
   }
   @Test
   public void testNodeCount4() {
     Trie testTrie = new Trie();
     testTrie.add("dan");
     testTrie.add("dan1");
-    assertEquals(testTrie.getNodeCount(), 3);
+    assertEquals(testTrie.getNodeCount(), 4);
   }
 
   // adding char test

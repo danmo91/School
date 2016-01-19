@@ -299,7 +299,7 @@ public class SpellCorrectorTest {
     try {
       test.useDictionary(dictionaryFileName);
     } catch (Exception e) {
-      System.out.println("Exception in test => " + e);
+      // System.out.println("Exception in test => " + e);
     }
 
     assertEquals(0, test.trie.getWordCount());

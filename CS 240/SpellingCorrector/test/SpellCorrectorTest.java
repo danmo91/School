@@ -1,11 +1,13 @@
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.fail;
 import org.junit.Test;
 
 import spell.SpellCorrector;
 import spell.Trie;
 import spell.TrieNode;
+import spell.ISpellCorrector.NoSimilarWordFoundException;
 
 public class SpellCorrectorTest {
 
@@ -321,6 +323,22 @@ public class SpellCorrectorTest {
     assertFalse(test.trie.root.equals(expected.trie.root));
   }
 
+  @Test
+  public void useDictionaryTest5 () {
+    SpellCorrector test = new SpellCorrector();
+    String dictionaryFileName = "words/words.txt";
+
+    SpellCorrector expected = new SpellCorrector();
+
+    try {
+      test.useDictionary(dictionaryFileName);
+      expected.useDictionary(dictionaryFileName);
+    } catch (Exception e) {
+      System.out.println("Exception in test => " + e);
+    }
+    assertTrue(test.trie.root.equals(expected.trie.root));
+  }
+
   // suggestSimilarWord Tests
   @Test
   public void suggestSimilarWordTest() {
@@ -446,5 +464,35 @@ public class SpellCorrectorTest {
       System.out.println("Exception in transformWord_alterateTest => " + e);
     }
   }
+
+  @Test
+  public void suggestSimilarWordTest2() {
+    SpellCorrector test = new SpellCorrector();
+    String dictionaryFileName = "words/small.txt";
+
+    try {
+      test.useDictionary(dictionaryFileName);
+      String similarWord = test.suggestSimilarWord("ask");
+    } catch (Exception e) {
+      System.out.println("NoSimilarWordException => " + e);
+    }
+  }
+
+  @Test
+  public void editDistanceTwo_delete() {
+    SpellCorrector test = new SpellCorrector();
+    String dictionaryFileName = "words/deleteDistanceTwo.txt";
+
+    try {
+      test.useDictionary(dictionaryFileName);
+      String similarWord = test.suggestSimilarWord("dan");
+      assertTrue(similarWord.equals("a"));
+    } catch (Exception e) {
+      System.out.println("NoSimilarWordException => " + e);
+      fail("failed editDistanceTwo_delete");
+    }
+  }
+
+
 
 }

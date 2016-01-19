@@ -41,6 +41,10 @@ public class SpellCorrector implements ISpellCorrector {
     bestNode = transformWord_alterate(bestNode, bestWord, inputWord);
     bestNode = transformWord_insert(bestNode, bestWord, inputWord);
 
+    if (bestWord.toString().equals("")) {
+      throw new NoSimilarWordFoundException();
+    }
+
     return bestWord.toString();
   }
 

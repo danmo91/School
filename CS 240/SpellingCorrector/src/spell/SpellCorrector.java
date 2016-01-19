@@ -43,9 +43,19 @@ public class SpellCorrector implements ISpellCorrector {
     bestNode = transformWord_alterate(bestNode, bestWord, inputWord, transformedWords);
     bestNode = transformWord_insert(bestNode, bestWord, inputWord, transformedWords);
 
+
     if (bestWord.toString().equals("")) {
-      throw new NoSimilarWordFoundException();
+      for (String word : transformedWords) {
+        // delete, edit distance 2
+        bestNode = transformWord_delete(bestNode, bestWord, word);
+        bestNode = transformWord_transpose(bestNode, bestWord, word);
+        bestNode = transformWord_alterate(bestNode, bestWord, word);
+        bestNode = transformWord_insert(bestNode, bestWord, word);
+      }
     }
+
+
+    if (bestWord.toString().equals("")) throw new NoSimilarWordFoundException();
 
     return bestWord.toString();
   }
@@ -83,6 +93,16 @@ public class SpellCorrector implements ISpellCorrector {
     return bestNode;
   }
 
+  public TrieNode transformWord_delete(TrieNode bestNode, StringBuilder bestWord, String inputWord) {
+    for (int i = 0; i < inputWord.length(); i++) {
+      StringBuilder inputWordBuilder = new StringBuilder(inputWord);
+      String transformedWord = inputWordBuilder.deleteCharAt(i).toString();
+      TrieNode resultNode = trie.find(transformedWord);
+      bestNode = selectBestWord(bestWord, transformedWord, bestNode, resultNode);
+    }
+    return bestNode;
+  }
+
   public TrieNode transformWord_transpose(TrieNode bestNode, StringBuilder bestWord, String inputWord, ArrayList<String> transformedWords) {
     for (int i = 0; i < inputWord.length() - 1; i++) {
       // swap chars
@@ -92,6 +112,22 @@ public class SpellCorrector implements ISpellCorrector {
       inputWordBuilder[i+1] = tmp;
       String transformedWord = new String(inputWordBuilder);
       transformedWords.add(transformedWord);
+
+      // find node
+      TrieNode resultNode = trie.find(transformedWord);
+      bestNode = selectBestWord(bestWord, transformedWord, bestNode, resultNode);
+    }
+    return bestNode;
+  }
+
+  public TrieNode transformWord_transpose(TrieNode bestNode, StringBuilder bestWord, String inputWord) {
+    for (int i = 0; i < inputWord.length() - 1; i++) {
+      // swap chars
+      char inputWordBuilder[] = inputWord.toCharArray();
+      char tmp = inputWordBuilder[i];
+      inputWordBuilder[i] = inputWordBuilder[i+1];
+      inputWordBuilder[i+1] = tmp;
+      String transformedWord = new String(inputWordBuilder);
 
       // find node
       TrieNode resultNode = trie.find(transformedWord);
@@ -117,6 +153,22 @@ public class SpellCorrector implements ISpellCorrector {
     return bestNode;
   }
 
+  public TrieNode transformWord_alterate(TrieNode bestNode, StringBuilder bestWord, String inputWord) {
+    for (int i = 0; i < inputWord.length(); i++) {
+      for (int j = 0; j < 26; j++) {
+        StringBuilder inputWordBuilder = new StringBuilder(inputWord);
+        // calculate char from index j
+        char addLetter = (char)(j + (int)'a');
+        // setCharAt(i, ch)
+        inputWordBuilder.setCharAt(i, addLetter);
+        String transformedWord = inputWordBuilder.toString();
+        TrieNode resultNode = trie.find(transformedWord);
+        bestNode = selectBestWord(bestWord, transformedWord, bestNode, resultNode);
+      }
+    }
+    return bestNode;
+  }
+
   public TrieNode transformWord_insert(TrieNode bestNode, StringBuilder bestWord, String inputWord, ArrayList<String> transformedWords) {
     for (int i = 0; i < inputWord.length() + 1; i++) {
       for (int j = 0; j < 26; j++) {
@@ -125,6 +177,21 @@ public class SpellCorrector implements ISpellCorrector {
         inputWordBuilder.insert(i, addLetter);
         String transformedWord = inputWordBuilder.toString();
         transformedWords.add(transformedWord);
+        TrieNode resultNode = trie.find(transformedWord);
+        bestNode = selectBestWord(bestWord, transformedWord, bestNode, resultNode);
+      }
+    }
+
+    return bestNode;
+  }
+
+  public TrieNode transformWord_insert(TrieNode bestNode, StringBuilder bestWord, String inputWord) {
+    for (int i = 0; i < inputWord.length() + 1; i++) {
+      for (int j = 0; j < 26; j++) {
+        StringBuilder inputWordBuilder = new StringBuilder(inputWord);
+        char addLetter = (char)(j + (int)'a');
+        inputWordBuilder.insert(i, addLetter);
+        String transformedWord = inputWordBuilder.toString();
         TrieNode resultNode = trie.find(transformedWord);
         bestNode = selectBestWord(bestWord, transformedWord, bestNode, resultNode);
       }

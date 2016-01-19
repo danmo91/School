@@ -35,7 +35,7 @@ public class SpellCorrector implements ISpellCorrector {
 
     TrieNode bestNode = new TrieNode(); // should be null? or having getValue() return 0 enough?
     StringBuilder bestWord = new StringBuilder();
-    ArrayList<String> transformedWords = new ArrayList();
+    ArrayList<String> transformedWords = new ArrayList<String>();
 
     // delete, edit distance 1
     bestNode = transformWord_delete(bestNode, bestWord, inputWord, transformedWords);

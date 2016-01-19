@@ -486,13 +486,30 @@ public class SpellCorrectorTest {
     try {
       test.useDictionary(dictionaryFileName);
       String similarWord = test.suggestSimilarWord("dan");
-      assertTrue(similarWord.equals("a"));
+      assertTrue(similarWord.equals("n"));
     } catch (Exception e) {
       System.out.println("NoSimilarWordException => " + e);
       fail("failed editDistanceTwo_delete");
     }
   }
 
+  @Test
+  public void editDistanceTwo_delete2() {
+    SpellCorrector test = new SpellCorrector();
+    String dictionaryFileName = "words/deleteDistanceTwo.txt";
+    boolean thrown = false;
 
+    try {
+      test.useDictionary(dictionaryFileName);
+      String similarWord = test.suggestSimilarWord("xyz");
+    } catch (NoSimilarWordFoundException e) {
+      thrown = true;
+    } catch (Exception e) {
+      System.out.println("IOException => " + e);
+    }
+    finally {
+      assertTrue(thrown);
+    }
+  }
 
 }

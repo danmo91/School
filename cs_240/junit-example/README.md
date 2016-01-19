@@ -2,6 +2,8 @@
 
 # JUNIT Testing
 
+https://github.com/junit-team/junit/wiki/Getting-started
+
 ## Compile tests
 ```sh
 $ javac -cp lib/junit-4.12.jar:hamcrest-core-1.3.jar -sourcepath src/ test/CalculatorTest.java

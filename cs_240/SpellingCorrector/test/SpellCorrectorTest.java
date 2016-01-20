@@ -544,24 +544,8 @@ public class SpellCorrectorTest {
   public void compareTrieTest2() {
 
     Trie test = new Trie();
-    test.add("dan");
-    test.add("dan");
-    test.add("andy");
-    test.add("andy");
-    test.add("cat");
-    test.add("cat");
-    test.add("cat");
+    Trie test2;
 
-    Trie test2 = new Trie();
-    test2.add("dan");
-    test2.add("dan");
-    test2.add("andy");
-    test2.add("andy");
-    test2.add("cat");
-    test2.add("cat");
-    test2.add("cat");
-
-    TrieNode n = new TrieNode();
     boolean e = test.equals(test2);
     assertTrue(e);
   }

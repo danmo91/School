@@ -125,9 +125,6 @@ public class Trie implements ITrie {
     if (!this.getClass().equals(t.getClass())) {
       return false;
     }
-    if (t == null) {
-      return false;
-    }
     if (t.getWordCount() != this.getWordCount()) {
       return false;
     }

@@ -522,4 +522,48 @@ public class SpellCorrectorTest {
     }
   }
 
+  @Test
+  public void compareTrieTest() {
+    SpellCorrector test = new SpellCorrector();
+    String dictionaryFileName = "words/words.txt";
+    SpellCorrector test2 = new SpellCorrector();
+
+    try {
+      test.useDictionary(dictionaryFileName);
+      test2.useDictionary(dictionaryFileName);
+
+      // compare tries
+      boolean e = test.trie.equals(test2.trie);
+      assertTrue(e);
+    } catch (Exception e) {
+
+    }
+  }
+
+  @Test
+  public void compareTrieTest2() {
+
+    Trie test = new Trie();
+    test.add("dan");
+    test.add("dan");
+    test.add("andy");
+    test.add("andy");
+    test.add("cat");
+    test.add("cat");
+    test.add("cat");
+
+    Trie test2 = new Trie();
+    test2.add("dan");
+    test2.add("dan");
+    test2.add("andy");
+    test2.add("andy");
+    test2.add("cat");
+    test2.add("cat");
+    test2.add("cat");
+
+    TrieNode n = new TrieNode();
+    boolean e = test.equals(test2);
+    assertTrue(e);
+  }
+
 }

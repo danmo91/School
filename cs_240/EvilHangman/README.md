@@ -4,6 +4,37 @@
 - The user supplies the length of the word they want to play with.
 - The program chooses the word at the end of the game
 
+## Compiling and Running the project
+
+``` sh
+# compile with -g for jdb debugging information
+$ javac -g -d bin/ src/hangman/*.java
+$ java -cp bin/ hangman.Main [dictionary.txt] [wordLengh] [guesses]
+```
+
+## Debugging with JDB
+
+(http://www.javaworld.com/article/2077445/testing-debugging/debug-with-jdb.html)
+include the -sourcepath option to show the source code inline with the debugger
+
+```sh
+$ jdb -classpath bin/ -sourcepath src/ hangman.Main [dictionary.txt] [wordLength] [guesses]
+# debugging test cases
+$ jdb -classpath .:lib/junit-4.12.jar:lib/hamcrest-core-1.3.jar:tests/:src/:bin/ org.junit.runner.JUnitCore EvilHangmanTest
+
+```
+## JUNIT Testing
+
+(https://github.com/junit-team/junit/wiki/Getting-started)
+
+### Compile and Running tests
+
+```sh
+$ javac -cp lib/junit-4.12.jar:hamcrest-core-1.3.jar -sourcepath src/ -d bin/ -g tests/EvilHangmanTest.java
+
+$ java -cp .:lib/junit-4.12.jar:lib/hamcrest-core-1.3.jar:tests/:src/:bin/ org.junit.runner.JUnitCore EvilHangmanTest
+```
+
 ## Project Tips
 
 1. Read the dictionary.txt into a set of strings, only keep the ones that match the word length

@@ -120,11 +120,19 @@ public class Trie implements ITrie {
 
   }
 
-  public boolean equals(Trie t) {
+  public boolean equals(Object o) {
     // check getClass types
-    if (!this.getClass().equals(t.getClass())) {
+    if (o == null) {
       return false;
     }
+    if (o == this) {
+      return true;
+    }
+    if (!this.getClass().equals(o.getClass())) {
+      return false;
+    }
+    Trie t = (Trie)o;
+
     if (t.getWordCount() != this.getWordCount()) {
       return false;
     }
@@ -159,11 +167,8 @@ public class Trie implements ITrie {
 
   @Override
   public int hashCode() {
-    int largePrime = 7919;
-    int hash = (int)Math.pow(this.nodeCount * this.wordCount, largePrime);
-
-    // to add more entropy check how many of the 26 nodes we have in root
-
+    int largePrime = 37;
+    int hash = this.nodeCount + this.wordCount * largePrime;
     return hash;
   }
 

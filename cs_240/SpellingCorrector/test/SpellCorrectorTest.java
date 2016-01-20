@@ -550,4 +550,14 @@ public class SpellCorrectorTest {
     assertTrue(e);
   }
 
+  @Test
+  public void compareHashCodeTest() {
+
+    Trie test = new Trie();
+    Trie test2 = new Trie();
+
+    boolean e = test.equals(test2);
+    assertTrue(e);
+  }
+
 }

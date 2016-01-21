@@ -6,21 +6,6 @@
 
 ## Compiling and Running the project
 
-`code snippet`
-
-```
-code block
-snippet
-```
-
-```py
-for letter in word:
-
-
-
-```
-
-
 ``` sh
 # compile with -g for jdb debugging information
 javac -g -d bin/ src/hangman/*.java
@@ -48,7 +33,6 @@ jdb -classpath .:lib/junit-4.12.jar:lib/hamcrest-core-1.3.jar:tests/:src/:bin/ o
 
 ```sh
 javac -cp lib/junit-4.12.jar:hamcrest-core-1.3.jar -sourcepath src/ -d bin/ -g tests/EvilHangmanTest.java
-
 java -cp .:lib/junit-4.12.jar:lib/hamcrest-core-1.3.jar:tests/:src/:bin/ org.junit.runner.JUnitCore EvilHangmanTest
 ```
 

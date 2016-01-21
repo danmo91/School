@@ -2,8 +2,19 @@ package hangman;
 
 import java.io.File;
 import java.util.Set;
+import java.util.HashSet;
+import java.util.Scanner;
 
 public class EvilHangmanGame implements IEvilHangmanGame {
+
+  public Set<String> words;
+  public Set<String> lettersGuessed;
+
+  public EvilHangmanGame() {
+    this.words = new HashSet<String>();
+    this.lettersGuessed = new HashSet<String>();
+  }
+
 
   /**
    * Starts a new game of evil hangman using words from <code>dictionary</code>
@@ -17,7 +28,17 @@ public class EvilHangmanGame implements IEvilHangmanGame {
    * @param wordLength Number of characters in the word to guess
    */
   public void startGame(File dictionary, int wordLength) {
-    System.out.println("Start Game");
+    try {
+      Scanner scanner = new Scanner(dictionary);
+      while(scanner.hasNext()) {
+        String word = scanner.next();
+        if (word.length() == wordLength)
+          words.add(word);
+      }
+      scanner.close();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 
 

@@ -11,10 +11,11 @@ import hangman.IEvilHangmanGame.GuessAlreadyMadeException;
 
 public class EvilHangmanTest {
   @Test
-  public void startGameTest() {
+  public void createSetTest() {
     EvilHangmanGame test = new EvilHangmanGame();
-    File dictionary = new File("dictionary.txt");
+    File dictionary = new File("words/small.txt");
     int wordLength = 4;
     test.startGame(dictionary, wordLength);
+    assertEquals(test.words.size(), 1);
   }
 }

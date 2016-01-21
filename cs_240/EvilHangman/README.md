@@ -6,10 +6,25 @@
 
 ## Compiling and Running the project
 
+`code snippet`
+
+```
+code block
+snippet
+```
+
+```py
+for letter in word:
+
+
+
+```
+
+
 ``` sh
 # compile with -g for jdb debugging information
-$ javac -g -d bin/ src/hangman/*.java
-$ java -cp bin/ hangman.Main [dictionary.txt] [wordLengh] [guesses]
+javac -g -d bin/ src/hangman/*.java
+java -cp bin/ hangman.Main [dictionary.txt] [wordLengh] [guesses]
 ```
 
 ## Debugging with JDB
@@ -18,29 +33,34 @@ $ java -cp bin/ hangman.Main [dictionary.txt] [wordLengh] [guesses]
 include the -sourcepath option to show the source code inline with the debugger
 
 ```sh
-$ jdb -classpath bin/ -sourcepath src/ hangman.Main [dictionary.txt] [wordLength] [guesses]
+jdb -classpath bin/ -sourcepath src/ hangman.Main [dictionary.txt] [wordLength] [guesses]
 # debugging test cases
-$ jdb -classpath .:lib/junit-4.12.jar:lib/hamcrest-core-1.3.jar:tests/:src/:bin/ org.junit.runner.JUnitCore EvilHangmanTest
+jdb -classpath .:lib/junit-4.12.jar:lib/hamcrest-core-1.3.jar:tests/:src/:bin/ org.junit.runner.JUnitCore EvilHangmanTest
 
 ```
 ## JUNIT Testing
 
 (https://github.com/junit-team/junit/wiki/Getting-started)
 
+(link url)[link text]
+
 ### Compile and Running tests
 
 ```sh
-$ javac -cp lib/junit-4.12.jar:hamcrest-core-1.3.jar -sourcepath src/ -d bin/ -g tests/EvilHangmanTest.java
+javac -cp lib/junit-4.12.jar:hamcrest-core-1.3.jar -sourcepath src/ -d bin/ -g tests/EvilHangmanTest.java
 
-$ java -cp .:lib/junit-4.12.jar:lib/hamcrest-core-1.3.jar:tests/:src/:bin/ org.junit.runner.JUnitCore EvilHangmanTest
+java -cp .:lib/junit-4.12.jar:lib/hamcrest-core-1.3.jar:tests/:src/:bin/ org.junit.runner.JUnitCore EvilHangmanTest
 ```
 
 ## Project Tips
 
-1. Read the dictionary.txt into a set of strings, only keep the ones that match the word length
+1. Read the dictionary.txt into a set of strings (a word is a sequence of letters [^a­-zA-Z]), only keep the ones that match the word length. letter comparisons are case­insensitive
 2. Ask the user for a guess
 3. Partition the set into subsets, and pick the largest subset to replace the set
 4. the user filters down to a set of one and guesses it correctly, they could win
+
+- wordLength is an integer ≥ 2
+- guesses is an integer ≥ 1
 
 Set of Strings
 map of subsets, 2^n is the max number of partitions

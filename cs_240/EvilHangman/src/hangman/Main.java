@@ -13,9 +13,18 @@ public class Main {
     for (int i = 0; i < numGuesses; i++) {
 
       // Display the number of remaining guesses, list of letters guessed, and partially constructed word
-      System.out.println("You have " + (numGuesses - i) + " guesses left");
-      System.out.println("Used letters: [list of letters guessed]");
-      System.out.println("word: [---a-]");
+      if (numGuesses - i == 1) {
+        System.out.println("You have 1 guess left");
+      } else {
+        System.out.println("You have " + (numGuesses - i) + " guesses left");
+      }
+
+      System.out.print("Used letters: ");
+      for (String letter : game.lettersGuessed) {
+        System.out.print(letter + " ");
+      }
+      
+      System.out.println("\nword: [---a-]");
 
       // Ask the user to make a guess
       System.out.print("Enter guess: ");

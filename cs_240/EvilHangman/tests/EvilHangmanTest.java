@@ -16,6 +16,16 @@ public class EvilHangmanTest {
     File dictionary = new File("words/small.txt");
     int wordLength = 4;
     test.startGame(dictionary, wordLength);
+    System.out.println(test.words.toString());
     assertEquals(test.words.size(), 1);
+  }
+  @Test
+  public void filterWordsTest() {
+    EvilHangmanGame test = new EvilHangmanGame();
+    File dictionary = new File("words/badWords.txt");
+    int wordLength = 4;
+    test.startGame(dictionary, wordLength);
+    System.out.println(test.words.toString());
+    assertEquals(test.words.size(), 0);
   }
 }

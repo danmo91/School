@@ -18,7 +18,7 @@ java -cp bin/ hangman.Main [dictionary.txt] [wordLengh] [guesses]
 include the -sourcepath option to show the source code inline with the debugger
 
 ```sh
-jdb -classpath bin/ -sourcepath src/ hangman.Main [dictionary.txt] [wordLength] [guesses]
+jdb -classpath .:bin/:src/ -sourcepath src/hangman hangman.Main [dictionary.txt] [wordLength] [guesses]
 # debugging test cases
 jdb -classpath .:lib/junit-4.12.jar:lib/hamcrest-core-1.3.jar:tests/:src/:bin/ org.junit.runner.JUnitCore EvilHangmanTest
 

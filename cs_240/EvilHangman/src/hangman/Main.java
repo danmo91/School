@@ -37,7 +37,7 @@ public class Main {
       boolean isValid = false;
       while (!isValid) {
         System.out.print("Enter guess: ");
-        String guess = userInput.next();
+        String guess = userInput.next().toLowerCase();
         isValid = validateGuess(guess);
         if (isValid) {
           game.makeGuess(guess.charAt(0));
@@ -57,6 +57,7 @@ public class Main {
     try {
       for (int i = 0; i < numGuesses; i++) {
         userInput = new Scanner(System.in);
+        userInput.useDelimiter("");
         printGameDialog(numGuesses, i, game);
         handleGuess(userInput, game);
       }

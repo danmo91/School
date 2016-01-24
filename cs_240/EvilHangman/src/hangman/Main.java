@@ -91,6 +91,9 @@ public class Main {
       // Start game
       EvilHangmanGame game = new EvilHangmanGame();
       game.startGame(dictionaryFileName, wordLength);
+      if (game.words.size() == 0) {
+        throw new Exception("not enough words to play game");
+      }
       runGame(numGuesses, game);
 
     } catch (Exception e) {

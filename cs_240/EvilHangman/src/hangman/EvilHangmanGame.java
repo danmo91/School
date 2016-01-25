@@ -158,9 +158,6 @@ public class EvilHangmanGame implements IEvilHangmanGame {
     }
     this.words = currentPart;
     this.word = currentPattern;
-
-    System.out.println("currentPart => " + currentPart.toString());
-
     return currentPart;
   }
 }

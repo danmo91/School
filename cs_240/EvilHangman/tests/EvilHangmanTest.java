@@ -16,7 +16,6 @@ public class EvilHangmanTest {
     File dictionary = new File("words/small.txt");
     int wordLength = 4;
     test.startGame(dictionary, wordLength);
-    System.out.println(test.words.toString());
     assertEquals(test.words.size(), 1);
   }
   @Test
@@ -25,7 +24,31 @@ public class EvilHangmanTest {
     File dictionary = new File("words/badWords.txt");
     int wordLength = 4;
     test.startGame(dictionary, wordLength);
-    System.out.println(test.words.toString());
     assertEquals(test.words.size(), 0);
   }
+
+  // compareTo tests
+  @Test
+  public void compareToTest() {
+    String one = "a--";
+    String two = "-a-";
+    int result = one.compareTo(two);
+    if (result < 0) {
+      System.out.println(one + " is less than " + two);
+    } else if (result > 0) {
+      System.out.println(one + " is greater than " + two);
+    }
+  }
+  @Test
+  public void getOccurancesTest() {
+    EvilHangmanGame game = new EvilHangmanGame();
+
+    String str = "happy";
+    char guess = 'p';
+    int result = game.getOccurences(str, guess);
+    assertEquals(result, 2);
+  }
+
+
+
 }

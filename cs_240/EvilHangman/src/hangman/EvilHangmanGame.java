@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.HashSet;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
@@ -69,7 +71,7 @@ public class EvilHangmanGame implements IEvilHangmanGame {
       while(scanner.hasNext()) {
         String word = scanner.next().toLowerCase(); // set to lowerCase
         if (word.length() == wordLength && isWord(word)) // check for [a-zA-Z]
-          words.add(word);
+          this.words.add(word);
       }
       initializeWord(wordLength);
     } catch (Exception e) {
@@ -79,6 +81,20 @@ public class EvilHangmanGame implements IEvilHangmanGame {
     }
   }
 
+  String makePattern(String word, char guess) {
+    char[] wordArray = word.toCharArray();
+    StringBuilder pattern = new StringBuilder(this.word);
+    for (int i = 0; i < word.length(); i++) {
+      if (wordArray[i] == guess) {
+        pattern.setCharAt(i, guess);
+      }
+    }
+    return pattern.toString();
+  }
+
+  public int getOccurences(String word, char guess) {
+    return word.length() - word.replace(String.valueOf(guess), "").length();
+  }
 
   /**
    * Make a guess in the current game.
@@ -95,14 +111,56 @@ public class EvilHangmanGame implements IEvilHangmanGame {
   public Set<String> makeGuess(char guess) throws GuessAlreadyMadeException {
     if (this.lettersGuessed.contains(String.valueOf(guess))) throw new GuessAlreadyMadeException();
 
-    // add guess to set
+    // add letter to lettersGuessed set
     this.lettersGuessed.add(String.valueOf(guess));
 
+    // create map to hold partitions
+    Map<String, HashSet<String>> partitions = new HashMap<String, HashSet<String>>();
+
     // partition set
+    for (String word : this.words) {
+      String pattern = makePattern(word, guess);
+      if (!partitions.containsKey(pattern)) {
+        partitions.put(pattern, new HashSet<String>());
+      }
+      // add word to partition
+      partitions.get(pattern).add(word);
+    }
 
-    // return largest result set
+    HashSet<String> currentPart = null;
+    String currentPattern = new String();
+    int currentPartSize = 0;
 
-    Set<String> stub = null;
-    return stub;
+    for (Map.Entry<String, HashSet<String>> entry : partitions.entrySet()) {
+      String pattern = entry.getKey();
+      HashSet<String> part = entry.getValue();
+
+      if (part.size() > currentPartSize) {
+        currentPart = part;
+        currentPartSize = part.size();
+        currentPattern = pattern;
+      } else if (part.size() == currentPartSize) {
+        // choose the pattern that contains the least number of occurences
+        if (getOccurences(pattern, guess) < getOccurences(currentPattern, guess)) {
+          currentPart = part;
+          currentPartSize = part.size();
+          currentPattern = pattern;
+        } else if (getOccurences(pattern, guess) == getOccurences(currentPattern, guess)) {
+          // choose the pattern with the rightmost guess char, using compareTo
+          int result = pattern.compareTo(currentPattern);
+          if (result < 0) {
+            currentPart = part;
+            currentPartSize = part.size();
+            currentPattern = pattern;
+          }
+        }
+      }
+    }
+    this.words = currentPart;
+    this.word = currentPattern;
+
+    System.out.println("currentPart => " + currentPart.toString());
+
+    return currentPart;
   }
 }

@@ -10,7 +10,6 @@ public class Main {
 
   public static boolean validateGuess(String guess) {
     if (guess.length() > 1) return false;
-
     Pattern ALPHA = Pattern.compile("[a-zA-Z]{1}");
     Matcher match = ALPHA.matcher(guess);
     return match.matches();
@@ -53,11 +52,11 @@ public class Main {
   }
 
   public static void runGame(int numGuesses, EvilHangmanGame game) {
-    Scanner userInput = null;
+
+    Scanner userInput = new Scanner(System.in);
     try {
       for (int i = 0; i < numGuesses; i++) {
         userInput = new Scanner(System.in);
-        userInput.useDelimiter("");
         printGameDialog(numGuesses, i, game);
         handleGuess(userInput, game);
       }

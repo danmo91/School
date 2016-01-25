@@ -60,6 +60,10 @@ foreach possible pattern
 ```java
 public String makePattern(String word, char guess) {
   // return string with guess letter and '-'
+
+  
+
+
 }
 ```
 What are the tie breaker rules?

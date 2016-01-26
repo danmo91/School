@@ -34,9 +34,9 @@ public class EvilHangmanTest {
     String two = "-a-";
     int result = one.compareTo(two);
     if (result < 0) {
-      System.out.println(one + " is less than " + two);
+      // System.out.println(one + " is less than " + two);
     } else if (result > 0) {
-      System.out.println(one + " is greater than " + two);
+      // System.out.println(one + " is greater than " + two);
     }
   }
   @Test
@@ -57,6 +57,20 @@ public class EvilHangmanTest {
     test.startGame(dictionary, wordLength);
     // System.out.println(test.words.size());
     // assertEquals(test.words.size(), 1);
+  }
+
+  @Test
+  public void partitionTest() {
+    try {
+      EvilHangmanGame game = new EvilHangmanGame();
+      File dictionary = new File("words/ally.txt");
+      int wordLength = 4;
+      game.startGame(dictionary, wordLength);
+      game.makeGuess('E');
+      System.out.println(game.words.toString());
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 
 

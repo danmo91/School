@@ -109,6 +109,7 @@ public class EvilHangmanGame implements IEvilHangmanGame {
    * has already been guessed in this game.
    */
   public Set<String> makeGuess(char guess) throws GuessAlreadyMadeException {
+    guess = Character.toLowerCase(guess);
     if (this.lettersGuessed.contains(String.valueOf(guess))) throw new GuessAlreadyMadeException();
 
     // add letter to lettersGuessed set
@@ -126,7 +127,7 @@ public class EvilHangmanGame implements IEvilHangmanGame {
       // add word to partition
       partitions.get(pattern).add(word);
     }
-
+    System.out.println("partitions => " + partitions);
     HashSet<String> currentPart = null;
     String currentPattern = new String();
     int currentPartSize = 0;

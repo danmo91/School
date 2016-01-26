@@ -82,8 +82,16 @@ public class Main {
         if (i == 1) System.out.println("\nYou have 1 guess left");
         else System.out.println("\nYou have " + i + " guesses left");
         System.out.print("Used letters: " + game.getUsedLetters());
-        System.out.println("\nword: " + game.getWord());
+        String wordBeforeGuess = game.getWord();
+        System.out.println("\nword: " + wordBeforeGuess);
         wordsLeft = handleGuess(userInput, game);
+
+        // cache getWord(), if getWord() changes then the user got the question right
+        String wordAfterGuess = game.getWord();
+        if (!wordBeforeGuess.equals(wordAfterGuess)) {
+          i++;
+        }
+
       }
 
       String pickedWord = null;
@@ -98,7 +106,7 @@ public class Main {
         System.out.println("You lose!");
       }
       System.out.println("The word was: " + pickedWord);
-      
+
     } catch (Exception e) {
       e.printStackTrace();
     } finally {

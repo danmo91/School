@@ -24,34 +24,6 @@ public class EvilHangmanGame implements IEvilHangmanGame {
     this.ALPHA = Pattern.compile("[a-zA-Z]+");
   }
 
-  public boolean isWord(String word) {
-    Matcher match = this.ALPHA.matcher(word);
-    return match.matches();
-  }
-
-  public String getWord() {
-    return this.word;
-  }
-
-  public String getUsedLetters() {
-    // return string of lettersGuessed in alphabetical order
-    StringBuilder usedLetters = new StringBuilder();
-    for (String letter : this.lettersGuessed) {
-      usedLetters.append(letter);
-      usedLetters.append(" ");
-    }
-    return usedLetters.toString();
-  }
-
-  public void initializeWord(int wordLength) {
-    StringBuilder str = new StringBuilder();
-    for (int i = 0; i < wordLength; i++) {
-      str.append("-");
-    }
-    this.word = str.toString();
-  }
-
-
   /**
    * Starts a new game of evil hangman using words from <code>dictionary</code>
    * with length <code>wordLength</code>.
@@ -79,21 +51,6 @@ public class EvilHangmanGame implements IEvilHangmanGame {
     } finally {
       scanner.close();
     }
-  }
-
-  String makePattern(String word, char guess) {
-    char[] wordArray = word.toCharArray();
-    StringBuilder pattern = new StringBuilder(this.word);
-    for (int i = 0; i < word.length(); i++) {
-      if (wordArray[i] == guess) {
-        pattern.setCharAt(i, guess);
-      }
-    }
-    return pattern.toString();
-  }
-
-  public int getOccurences(String word, char guess) {
-    return word.length() - word.replace(String.valueOf(guess), "").length();
   }
 
   /**
@@ -127,7 +84,7 @@ public class EvilHangmanGame implements IEvilHangmanGame {
       // add word to partition
       partitions.get(pattern).add(word);
     }
-    System.out.println("partitions => " + partitions);
+
     HashSet<String> currentPart = null;
     String currentPattern = new String();
     int currentPartSize = 0;
@@ -161,4 +118,47 @@ public class EvilHangmanGame implements IEvilHangmanGame {
     this.word = currentPattern;
     return currentPart;
   }
+
+  public boolean isWord(String word) {
+    Matcher match = this.ALPHA.matcher(word);
+    return match.matches();
+  }
+
+  public String getWord() {
+    return this.word;
+  }
+
+  public String getUsedLetters() {
+    // return string of lettersGuessed in alphabetical order
+    StringBuilder usedLetters = new StringBuilder();
+    for (String letter : this.lettersGuessed) {
+      usedLetters.append(letter);
+      usedLetters.append(" ");
+    }
+    return usedLetters.toString();
+  }
+
+  public void initializeWord(int wordLength) {
+    StringBuilder str = new StringBuilder();
+    for (int i = 0; i < wordLength; i++) {
+      str.append("-");
+    }
+    this.word = str.toString();
+  }
+
+  String makePattern(String word, char guess) {
+    char[] wordArray = word.toCharArray();
+    StringBuilder pattern = new StringBuilder(this.word);
+    for (int i = 0; i < word.length(); i++) {
+      if (wordArray[i] == guess) {
+        pattern.setCharAt(i, guess);
+      }
+    }
+    return pattern.toString();
+  }
+
+  public int getOccurences(String word, char guess) {
+    return word.length() - word.replace(String.valueOf(guess), "").length();
+  }
+
 }

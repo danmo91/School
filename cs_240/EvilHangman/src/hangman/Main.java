@@ -98,9 +98,7 @@ public class Main {
         System.out.println("You lose!");
       }
       System.out.println("The word was: " + pickedWord);
-
-
-
+      
     } catch (Exception e) {
       e.printStackTrace();
     } finally {

@@ -49,6 +49,16 @@ public class EvilHangmanTest {
     assertEquals(result, 2);
   }
 
+  @Test
+  public void createSetTestLarge() {
+    EvilHangmanGame test = new EvilHangmanGame();
+    File dictionary = new File("words/dictionary.txt");
+    int wordLength = 4;
+    test.startGame(dictionary, wordLength);
+    // System.out.println(test.words.size());
+    // assertEquals(test.words.size(), 1);
+  }
+
 
 
 }

@@ -78,7 +78,7 @@ public class Main {
     Scanner userInput = new Scanner(System.in);
     Set<String> wordsLeft = null;
     try {
-      for (int i = numGuesses; i > 0; i--) {
+      for (int i = numGuesses; i > 0 && game.getOccurences(game.getWord(), '-') > 0; i--) {
         if (i == 1) System.out.println("\nYou have 1 guess left");
         else System.out.println("\nYou have " + i + " guesses left");
         System.out.print("Used letters: " + game.getUsedLetters());

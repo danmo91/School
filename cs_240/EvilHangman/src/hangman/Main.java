@@ -5,6 +5,8 @@ import java.util.Scanner;
 import java.io.File;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
+import java.util.Set;
+import java.util.HashSet;
 
 public class Main {
 
@@ -35,8 +37,9 @@ public class Main {
     return match.matches();
   }
 
-  public static void handleGuess(Scanner userInput, EvilHangmanGame game) {
+  public static Set<String> handleGuess(Scanner userInput, EvilHangmanGame game) {
     // Ask the user to make a guess, validate input, make guess
+    Set<String> resultSet = null;
     try {
       boolean isValid = false;
       while (!isValid) {
@@ -44,7 +47,20 @@ public class Main {
         String guess = userInput.next().toLowerCase();
         isValid = validateGuess(guess);
         if (isValid) {
-          game.makeGuess(guess.charAt(0));
+          char guessChar = guess.charAt(0);
+          resultSet = game.makeGuess(guessChar);
+
+          // sorry there are no a's
+          String pattern = game.getWord();
+          int result = game.getOccurences(pattern, guessChar);
+          if ( result == 1) {
+            System.out.println("Yes, there is " + result + " " + guess);
+          } else if (result > 1) {
+            System.out.println("Yes, there are " + result + " " + guess + "'s");
+          } else {
+            System.out.println("Sorry, there are no " + guess + "'s");
+          }
+
         } else {
           System.out.println("Invalid input");
         }
@@ -52,20 +68,39 @@ public class Main {
     } catch (GuessAlreadyMadeException e) {
       System.out.println("You already used that letter");
       handleGuess(userInput, game);
+    } finally {
+      return resultSet;
     }
   }
 
   public static void runGame(int numGuesses, EvilHangmanGame game) {
 
     Scanner userInput = new Scanner(System.in);
+    Set<String> wordsLeft = null;
     try {
       for (int i = numGuesses; i > 0; i--) {
         if (i == 1) System.out.println("\nYou have 1 guess left");
-        else System.out.println("You have " + i + " guesses left");
+        else System.out.println("\nYou have " + i + " guesses left");
         System.out.print("Used letters: " + game.getUsedLetters());
         System.out.println("\nword: " + game.getWord());
-        handleGuess(userInput, game);
+        wordsLeft = handleGuess(userInput, game);
       }
+
+      String pickedWord = null;
+      for(String word : wordsLeft) {
+        pickedWord = word;
+        break;
+      }
+
+      if (pickedWord.equals(game.getWord())) {
+        System.out.println("You win!");
+      } else {
+        System.out.println("You lose!");
+      }
+      System.out.println("The word was: " + pickedWord);
+
+
+
     } catch (Exception e) {
       e.printStackTrace();
     } finally {

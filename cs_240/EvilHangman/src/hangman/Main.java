@@ -26,12 +26,11 @@ public class Main {
 
     } catch (Exception e) {
       e.printStackTrace();
-      System.out.println("USAGE: java -cp bin/ hangman.Main [dictionary.txt] [wordLengh] [guesses]");
+      System.out.println("USAGE: java -cp bin/ hangman.Main [dictionary.txt] [wordLength] [guesses]");
     }
   }
 
   public static boolean validateGuess(String guess) {
-    if (guess.length() > 1) return false;
     Pattern ALPHA = Pattern.compile("[a-zA-Z]{1}");
     Matcher match = ALPHA.matcher(guess);
     return match.matches();
